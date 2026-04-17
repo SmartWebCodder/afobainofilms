@@ -1,15 +1,25 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import TopBar from '@/Components/Admin/TopBar.vue';
+import ConfirmModal from '@/Components/Admin/ConfirmModal.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     testimonials: Object,
 });
 
+const showDeleteModal = ref(false);
+const deleteTargetId = ref(null);
+
 function confirmDelete(id) {
-    if (confirm('Delete this testimonial?')) {
-        router.delete(`/admin/testimonials/${id}`);
-    }
+    deleteTargetId.value = id;
+    showDeleteModal.value = true;
+}
+
+function executeDelete() {
+    router.delete(`/admin/testimonials/${deleteTargetId.value}`);
+    showDeleteModal.value = false;
+    deleteTargetId.value = null;
 }
 </script>
 
@@ -78,4 +88,12 @@ function confirmDelete(id) {
             />
         </div>
     </div>
+
+    <ConfirmModal
+        :show="showDeleteModal"
+        title="Delete Testimonial"
+        message="Are you sure you want to delete this testimonial? This action cannot be undone."
+        @confirm="executeDelete"
+        @cancel="showDeleteModal = false"
+    />
 </template>

@@ -1,0 +1,64 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install Node dependencies and build assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to cPanel via LFTP
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -c "
+            set ftp:ssl-allow yes;
+            set ftp:ssl-protect-data yes;
+            set ftp:ssl-force yes;
+            set ssl:verify-certificate no;
+            set net:timeout 60;
+            set net:max-retries 5;
+            set net:reconnect-interval-base 5;
+            set net:reconnect-interval-multiplier 1;
+            set mirror:parallel-transfer-count 4;
+            set cmd:fail-exit no;
+            open -u ${{ secrets.CPANEL_FTP_USERNAME }},${{ secrets.CPANEL_FTP_PASSWORD }} ${{ secrets.CPANEL_FTP_HOST }};
+            mirror --reverse --delete --verbose --ignore-time \
+              --exclude-glob .git/ \
+              --exclude-glob .git*/** \
+              --exclude-glob node_modules/ \
+              --exclude-glob tests/ \
+              --exclude-glob .env \
+              --exclude-glob .env.* \
+              --exclude-glob storage/logs/ \
+              --exclude-glob .github/ \
+              --exclude-glob README.md \
+              --exclude-glob .well-known/ \
+              ./ ${{ secrets.CPANEL_FTP_REMOTE_PATH }};
+            bye;
+          " || true

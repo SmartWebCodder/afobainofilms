@@ -13,7 +13,7 @@ class ContactController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:20'],
-            'event_date' => ['nullable', 'date'],
+            'event_date' => ['nullable', 'string', 'max:50'],
             'event_type' => ['nullable', 'string'],
             'vision' => ['nullable', 'string', 'max:2000'],
         ]);

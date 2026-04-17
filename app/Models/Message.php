@@ -16,13 +16,6 @@ use Illuminate\Database\Eloquent\Model;
 ])]
 class Message extends Model
 {
-    protected function casts(): array
-    {
-        return [
-            'event_date' => 'date',
-        ];
-    }
-
     public function scopeUnread($query)
     {
         return $query->where('status', 'unread');

@@ -11,7 +11,8 @@ const form = useForm({
     vision: '',
 });
 
-const submitted = ref(false);
+const loading = ref(false);
+const showModal = ref(false);
 
 const faqs = ref([
     { question: 'Do you travel for destination films?', answer: 'Absolutely. We have filmed across multiple continents and love capturing stories in breathtaking locations. Travel fees are included in our destination packages.', open: false },
@@ -28,10 +29,18 @@ function submitForm() {
     form.post('/contact', {
         preserveScroll: true,
         onSuccess: () => {
-            submitted.value = true;
+            loading.value = true;
             form.reset();
+            setTimeout(() => {
+                loading.value = false;
+                showModal.value = true;
+            }, 2000);
         },
     });
+}
+
+function closeModal() {
+    showModal.value = false;
 }
 </script>
 
@@ -132,10 +141,14 @@ function submitForm() {
 
                         <button
                             type="submit"
-                            :disabled="form.processing"
-                            class="w-full py-5 bg-primary text-white font-sans font-bold uppercase tracking-widest text-sm rounded hover:bg-primary-dark transition-all duration-500 disabled:opacity-50"
+                            :disabled="form.processing || loading"
+                            class="w-full py-5 bg-primary text-white font-sans font-bold uppercase tracking-widest text-sm rounded hover:bg-primary-dark transition-all duration-500 disabled:opacity-50 flex items-center justify-center gap-3"
                         >
-                            {{ form.processing ? 'Sending...' : 'Send Message' }}
+                            <svg v-if="form.processing || loading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                            </svg>
+                            {{ form.processing || loading ? 'Sending...' : 'Send Message' }}
                         </button>
                     </form>
                 </section>
@@ -222,5 +235,47 @@ function submitForm() {
                 </div>
             </div>
         </section>
+
+        <!-- Success Modal -->
+        <Teleport to="body">
+            <Transition name="modal">
+                <div v-if="showModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-6" @click.self="closeModal">
+                    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+                    <div class="relative bg-white max-w-md w-full p-12 text-center space-y-6 shadow-2xl">
+                        <div class="mx-auto w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        </div>
+                        <h3 class="text-3xl font-headline italic text-on-surface">Message Sent</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Thank you for reaching out. We'll be in touch within 24 hours to discuss your vision.</p>
+                        <button
+                            @click="closeModal"
+                            class="mt-4 px-10 py-3 bg-primary text-white font-sans font-bold uppercase tracking-widest text-xs hover:bg-primary-dark transition-all duration-300"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </Transition>
+        </Teleport>
     </div>
 </template>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+    transition: opacity 0.3s ease;
+}
+.modal-enter-active .relative,
+.modal-leave-active .relative {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.modal-enter-from,
+.modal-leave-to {
+    opacity: 0;
+}
+.modal-enter-from .relative,
+.modal-leave-to .relative {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+}
+</style>

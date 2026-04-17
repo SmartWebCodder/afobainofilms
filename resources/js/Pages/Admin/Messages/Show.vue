@@ -1,19 +1,26 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import TopBar from '@/Components/Admin/TopBar.vue';
+import ConfirmModal from '@/Components/Admin/ConfirmModal.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     message: Object,
 });
+
+const showDeleteModal = ref(false);
 
 function updateStatus(status) {
     router.patch(`/admin/messages/${props.message.id}/status`, { status });
 }
 
 function confirmDelete() {
-    if (confirm('Delete this message?')) {
-        router.delete(`/admin/messages/${props.message.id}`);
-    }
+    showDeleteModal.value = true;
+}
+
+function executeDelete() {
+    router.delete(`/admin/messages/${props.message.id}`);
+    showDeleteModal.value = false;
 }
 </script>
 
@@ -93,4 +100,12 @@ function confirmDelete() {
             </button>
         </div>
     </div>
+
+    <ConfirmModal
+        :show="showDeleteModal"
+        title="Delete Message"
+        message="Are you sure you want to delete this message? This action cannot be undone."
+        @confirm="executeDelete"
+        @cancel="showDeleteModal = false"
+    />
 </template>
