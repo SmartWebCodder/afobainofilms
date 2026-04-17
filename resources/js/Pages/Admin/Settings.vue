@@ -50,31 +50,31 @@ const siteFields = [
     <TopBar title="Settings" />
 
     <div class="px-12 py-10 max-w-3xl space-y-8">
-        <div class="flex gap-1 border-b border-white/5 pb-px">
+        <div class="flex gap-1 border-b border-outline pb-px">
             <button
                 @click="activeTab = 'site'"
                 class="px-4 py-2.5 text-xs font-sans uppercase tracking-widest transition-colors border-b-2 -mb-px"
-                :class="activeTab === 'site' ? 'border-primary text-primary' : 'border-transparent text-white/40 hover:text-white'"
+                :class="activeTab === 'site' ? 'border-primary text-primary' : 'border-transparent text-on-surface-muted hover:text-on-surface'"
             >
                 Site Settings
             </button>
             <button
                 @click="activeTab = 'profile'"
                 class="px-4 py-2.5 text-xs font-sans uppercase tracking-widest transition-colors border-b-2 -mb-px"
-                :class="activeTab === 'profile' ? 'border-primary text-primary' : 'border-transparent text-white/40 hover:text-white'"
+                :class="activeTab === 'profile' ? 'border-primary text-primary' : 'border-transparent text-on-surface-muted hover:text-on-surface'"
             >
                 Profile
             </button>
         </div>
 
         <form v-if="activeTab === 'site'" @submit.prevent="saveSite" class="space-y-8">
-            <div class="bg-[#1c1b1b] border border-white/5 p-8 space-y-6">
+            <div class="bg-surface border border-outline p-8 space-y-6">
                 <div v-for="field in siteFields" :key="field.key">
-                    <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">{{ field.label }}</label>
+                    <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">{{ field.label }}</label>
                     <input
                         v-model="siteForm[field.key]"
                         :type="field.type"
-                        class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-white/20"
+                        class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-on-surface-muted"
                     />
                     <p v-if="siteForm.errors[field.key]" class="text-error text-xs mt-1">{{ siteForm.errors[field.key] }}</p>
                 </div>
@@ -90,43 +90,43 @@ const siteFields = [
         </form>
 
         <form v-if="activeTab === 'profile'" @submit.prevent="saveProfile" class="space-y-8">
-            <div class="bg-[#1c1b1b] border border-white/5 p-8 space-y-6">
+            <div class="bg-surface border border-outline p-8 space-y-6">
                 <div>
-                    <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Name</label>
+                    <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Name</label>
                     <input
                         v-model="profileForm.name"
                         type="text"
-                        class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                        class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                     />
                     <p v-if="profileForm.errors.name" class="text-error text-xs mt-1">{{ profileForm.errors.name }}</p>
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Email</label>
+                    <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Email</label>
                     <input
                         v-model="profileForm.email"
                         type="email"
-                        class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                        class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                     />
                     <p v-if="profileForm.errors.email" class="text-error text-xs mt-1">{{ profileForm.errors.email }}</p>
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">New Password (leave blank to keep current)</label>
+                    <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">New Password (leave blank to keep current)</label>
                     <input
                         v-model="profileForm.password"
                         type="password"
-                        class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                        class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                     />
                     <p v-if="profileForm.errors.password" class="text-error text-xs mt-1">{{ profileForm.errors.password }}</p>
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Confirm Password</label>
+                    <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Confirm Password</label>
                     <input
                         v-model="profileForm.password_confirmation"
                         type="password"
-                        class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                        class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                     />
                 </div>
             </div>

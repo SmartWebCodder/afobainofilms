@@ -42,79 +42,79 @@ function submit() {
     <TopBar :title="isEditing ? 'Edit Project' : 'New Project'" />
 
     <form @submit.prevent="submit" class="px-12 py-10 max-w-3xl space-y-8">
-        <div class="bg-[#1c1b1b] border border-white/5 p-8 space-y-6">
+        <div class="bg-surface border border-outline p-8 space-y-6">
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Title</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Title</label>
                 <input
                     v-model="form.title"
                     type="text"
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                 />
                 <p v-if="form.errors.title" class="text-error text-xs mt-1">{{ form.errors.title }}</p>
             </div>
 
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Category</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Category</label>
                 <select
                     v-model="form.category"
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0"
                 >
                     <option value="" disabled>Select category</option>
-                    <option v-for="cat in categories" :key="cat" :value="cat" class="bg-[#1c1b1b]">{{ cat }}</option>
+                    <option v-for="cat in categories" :key="cat" :value="cat" class="bg-surface">{{ cat }}</option>
                 </select>
                 <p v-if="form.errors.category" class="text-error text-xs mt-1">{{ form.errors.category }}</p>
             </div>
 
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Description</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Description</label>
                 <textarea
                     v-model="form.description"
                     rows="4"
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0 resize-none"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0 resize-none"
                 ></textarea>
             </div>
 
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Cover Image URL</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Cover Image URL</label>
                 <input
                     v-model="form.cover_image"
                     type="text"
                     placeholder="https://..."
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-white/20"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-on-surface-muted"
                 />
-                <div v-if="form.cover_image" class="mt-3 w-32 h-24 bg-white/5 overflow-hidden">
+                <div v-if="form.cover_image" class="mt-3 w-32 h-24 bg-surface-container overflow-hidden">
                     <img :src="form.cover_image" class="w-full h-full object-cover" />
                 </div>
             </div>
 
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">YouTube URL</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">YouTube URL</label>
                 <input
                     v-model="form.youtube_url"
                     type="text"
                     placeholder="https://youtube.com/..."
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-white/20"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-on-surface-muted"
                 />
             </div>
 
             <div>
-                <label class="block text-[10px] font-sans uppercase tracking-widest text-white/50 mb-2">Tags (comma-separated)</label>
+                <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Tags (comma-separated)</label>
                 <input
                     v-model="tagInput"
                     type="text"
                     placeholder="wedding, outdoor, luxury"
-                    class="w-full bg-transparent border-0 border-b border-white/10 text-white px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-white/20"
+                    class="w-full bg-transparent border-0 border-b border-outline text-on-surface px-0 py-3 text-sm focus:border-primary focus:ring-0 placeholder-on-surface-muted"
                 />
             </div>
 
             <div class="flex items-center gap-8 pt-2">
                 <label class="flex items-center space-x-2 cursor-pointer">
-                    <input v-model="form.is_published" type="checkbox" class="bg-transparent border-white/20 text-primary focus:ring-primary/50 rounded" />
-                    <span class="text-xs text-white/60">Published</span>
+                    <input v-model="form.is_published" type="checkbox" class="bg-transparent border-outline text-primary focus:ring-primary/50 rounded" />
+                    <span class="text-xs text-on-surface-variant">Published</span>
                 </label>
                 <label class="flex items-center space-x-2 cursor-pointer">
-                    <input v-model="form.is_featured" type="checkbox" class="bg-transparent border-white/20 text-primary focus:ring-primary/50 rounded" />
-                    <span class="text-xs text-white/60">Featured</span>
+                    <input v-model="form.is_featured" type="checkbox" class="bg-transparent border-outline text-primary focus:ring-primary/50 rounded" />
+                    <span class="text-xs text-on-surface-variant">Featured</span>
                 </label>
             </div>
         </div>
@@ -127,7 +127,7 @@ function submit() {
             >
                 {{ form.processing ? 'Saving...' : (isEditing ? 'Update Project' : 'Create Project') }}
             </button>
-            <Link href="/admin/projects" class="px-8 py-3 border border-white/10 text-white/50 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+            <Link href="/admin/projects" class="px-8 py-3 border border-outline text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-on-surface transition-colors">
                 Cancel
             </Link>
         </div>

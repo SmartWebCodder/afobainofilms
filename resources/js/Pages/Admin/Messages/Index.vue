@@ -24,7 +24,7 @@ const statusColors = {
     unread: 'bg-secondary',
     read: 'bg-primary',
     starred: 'bg-yellow-400',
-    archived: 'bg-white/20',
+    archived: 'bg-on-surface-muted',
 };
 
 let debounceTimer;
@@ -52,12 +52,12 @@ function confirmDelete(id) {
     <div class="px-12 py-10 space-y-8">
         <div class="flex items-center gap-4">
             <div class="relative flex-1 max-w-xs">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/30 text-lg">search</span>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-muted text-lg">search</span>
                 <input
                     v-model="search"
                     type="text"
                     placeholder="Search by name or email..."
-                    class="w-full bg-[#1c1b1b] border border-white/5 text-white text-sm pl-10 pr-4 py-2.5 focus:border-primary focus:ring-0 placeholder-white/20"
+                    class="w-full bg-surface border border-outline text-on-surface text-sm pl-10 pr-4 py-2.5 focus:border-primary focus:ring-0 placeholder-on-surface-muted"
                 />
             </div>
             <div class="flex gap-1">
@@ -66,7 +66,7 @@ function confirmDelete(id) {
                     :key="opt.value"
                     @click="status = opt.value"
                     class="px-3 py-1.5 text-[10px] font-sans uppercase tracking-widest transition-colors"
-                    :class="status === opt.value ? 'bg-primary text-black' : 'text-white/40 hover:text-white'"
+                    :class="status === opt.value ? 'bg-primary text-white' : 'text-on-surface-muted hover:text-on-surface'"
                 >
                     {{ opt.label }}
                 </button>
@@ -79,34 +79,34 @@ function confirmDelete(id) {
                     v-for="msg in messages.data"
                     :key="msg.id"
                     :href="`/admin/messages/${msg.id}`"
-                    class="flex items-center justify-between p-5 bg-[#1c1b1b] border border-white/5 hover:border-primary/20 transition-colors"
+                    class="flex items-center justify-between p-5 bg-surface border border-outline hover:border-primary/20 transition-colors"
                 >
                     <div class="flex items-center space-x-4 flex-1 min-w-0">
-                        <div class="w-10 h-10 bg-white/10 flex items-center justify-center text-xs font-bold text-primary flex-shrink-0">
+                        <div class="w-10 h-10 bg-surface-container flex items-center justify-center text-xs font-bold text-primary flex-shrink-0">
                             {{ msg.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) }}
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="flex items-center gap-2">
                                 <span class="inline-block w-2 h-2 rounded-full flex-shrink-0" :class="statusColors[msg.status]"></span>
-                                <p class="text-sm text-white font-medium truncate">{{ msg.name }}</p>
+                                <p class="text-sm text-on-surface font-medium truncate">{{ msg.name }}</p>
                             </div>
-                            <p class="text-xs text-white/40 truncate">{{ msg.email }}</p>
+                            <p class="text-xs text-on-surface-muted truncate">{{ msg.email }}</p>
                         </div>
-                        <div class="hidden md:block text-xs text-white/30 uppercase tracking-wider px-4">{{ msg.event_type ?? '—' }}</div>
-                        <p class="text-xs text-white/40 truncate max-w-xs hidden lg:block">{{ msg.vision ?? '' }}</p>
+                        <div class="hidden md:block text-xs text-on-surface-muted uppercase tracking-wider px-4">{{ msg.event_type ?? '—' }}</div>
+                        <p class="text-xs text-on-surface-muted truncate max-w-xs hidden lg:block">{{ msg.vision ?? '' }}</p>
                     </div>
                     <div class="flex items-center gap-3 ml-4 flex-shrink-0">
-                        <span class="text-[10px] text-white/30">{{ msg.created_at }}</span>
+                        <span class="text-[10px] text-on-surface-muted">{{ msg.created_at }}</span>
                         <button
                             @click.prevent="confirmDelete(msg.id)"
-                            class="text-white/20 hover:text-error transition-colors"
+                            class="text-on-surface-muted hover:text-error transition-colors"
                         >
                             <span class="material-symbols-outlined text-lg">delete</span>
                         </button>
                     </div>
                 </Link>
             </template>
-            <p v-else class="py-10 text-center text-white/30 text-sm">No messages found</p>
+            <p v-else class="py-10 text-center text-on-surface-muted text-sm">No messages found</p>
         </div>
 
         <div v-if="messages.last_page > 1" class="flex items-center justify-center gap-2">
@@ -115,7 +115,7 @@ function confirmDelete(id) {
                 :key="link.label"
                 :href="link.url"
                 class="px-3 py-1.5 text-xs"
-                :class="link.active ? 'bg-primary text-black' : link.url ? 'text-white/50 hover:text-primary' : 'text-white/20 pointer-events-none'"
+                :class="link.active ? 'bg-primary text-white' : link.url ? 'text-on-surface-variant hover:text-primary' : 'text-on-surface-muted pointer-events-none'"
                 v-html="link.label"
             />
         </div>

@@ -5,11 +5,17 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ContactController;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', fn() => Inertia::render('Home'))->name('home');
+Route::get('/', function () {
+    return Inertia::render('Home', [
+        'testimonials' => Testimonial::active()->orderBy('sort_order')->get(),
+    ]);
+})->name('home');
 Route::get('/portfolio', fn() => Inertia::render('Portfolio'))->name('portfolio');
 Route::get('/about', fn() => Inertia::render('About'))->name('about');
 Route::get('/services', fn() => Inertia::render('Services'))->name('services');
@@ -27,6 +33,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('projects', ProjectController::class)
             ->except(['show'])
             ->names('admin.projects');
+
+        Route::resource('testimonials', TestimonialController::class)
+            ->except(['show'])
+            ->names('admin.testimonials');
 
         Route::get('/messages', [MessageController::class, 'index'])->name('admin.messages.index');
         Route::get('/messages/{message}', [MessageController::class, 'show'])->name('admin.messages.show');

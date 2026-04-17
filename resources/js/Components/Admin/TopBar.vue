@@ -12,19 +12,19 @@ const flash = computed(() => page.props.flash);
 </script>
 
 <template>
-    <header class="flex items-center justify-between px-12 py-6 bg-[#201f1f]/80 backdrop-blur-xl sticky top-0 z-30 border-b border-white/5">
+    <header class="flex items-center justify-between px-12 py-6 bg-surface/80 backdrop-blur-xl sticky top-0 z-30 border-b border-outline">
         <div>
-            <h2 class="text-xl font-headline italic text-white" v-html="title"></h2>
-            <p v-if="subtitle" class="text-[10px] font-sans uppercase tracking-widest text-white/40">{{ subtitle }}</p>
+            <h2 class="text-xl font-headline italic text-on-surface" v-html="title"></h2>
+            <p v-if="subtitle" class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted">{{ subtitle }}</p>
         </div>
         <div class="flex items-center space-x-4">
-            <Link href="/admin/projects/create" class="flex items-center space-x-2 px-5 py-2 bg-primary text-black text-xs font-bold uppercase tracking-widest hover:bg-primary-light transition-colors">
+            <Link href="/admin/projects/create" class="flex items-center space-x-2 px-5 py-2 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-light transition-colors">
                 <span class="material-symbols-outlined text-lg">add</span>
                 <span>New Project</span>
             </Link>
             <button
                 @click="router.post('/admin/logout')"
-                class="p-2 text-white/50 hover:text-primary transition-colors"
+                class="p-2 text-on-surface-variant hover:text-primary transition-colors"
                 title="Logout"
             >
                 <span class="material-symbols-outlined">logout</span>

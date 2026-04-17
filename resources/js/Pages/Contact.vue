@@ -1,14 +1,17 @@
 <script setup>
+import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const form = ref({
+const form = useForm({
     name: '',
     email: '',
     phone: '',
-    date: '',
-    type: '',
+    event_date: '',
+    event_type: '',
     vision: '',
 });
+
+const submitted = ref(false);
 
 const faqs = [
     { question: 'Do you travel for destination films?', open: false },
@@ -22,7 +25,13 @@ function toggleFaq(index) {
 }
 
 function submitForm() {
-    // will be connected to backend later
+    form.post('/contact', {
+        preserveScroll: true,
+        onSuccess: () => {
+            submitted.value = true;
+            form.reset();
+        },
+    });
 }
 </script>
 
@@ -95,7 +104,7 @@ function submitForm() {
                             <div class="relative">
                                 <input
                                     id="date"
-                                    v-model="form.date"
+                                    v-model="form.event_date"
                                     type="text"
                                     placeholder=" "
                                     class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
@@ -113,7 +122,7 @@ function submitForm() {
                             <label for="type" class="block font-sans text-xs uppercase tracking-widest text-primary mb-2">Service Category</label>
                             <select
                                 id="type"
-                                v-model="form.type"
+                                v-model="form.event_type"
                                 class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors"
                             >
                                 <option value="" disabled>Select Event Type</option>
@@ -142,9 +151,10 @@ function submitForm() {
 
                         <button
                             type="submit"
-                            class="w-full py-5 bg-primary text-white font-sans font-bold uppercase tracking-widest text-sm rounded hover:bg-primary-dark transition-all duration-500"
+                            :disabled="form.processing"
+                            class="w-full py-5 bg-primary text-white font-sans font-bold uppercase tracking-widest text-sm rounded hover:bg-primary-dark transition-all duration-500 disabled:opacity-50"
                         >
-                            Send Message
+                            {{ form.processing ? 'Sending...' : 'Send Message' }}
                         </button>
                     </form>
                 </section>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\Project;
+use App\Models\Testimonial;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -17,6 +18,7 @@ class DashboardController extends Controller
                 'publishedProjects' => Project::published()->count(),
                 'totalMessages' => Message::count(),
                 'unreadMessages' => Message::unread()->count(),
+                'totalTestimonials' => Testimonial::count(),
             ],
             'recentMessages' => Message::latest()
                 ->take(5)
