@@ -39,7 +39,7 @@ function submitForm() {
     <div>
         <header class="relative h-102.25 flex items-center justify-center overflow-hidden">
             <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlgEG__lTPaKgIjnUj40j2PC75HTfbgSAevEnwDhzmVN_Y1BT16fqgdG2lT35S21yIXCzIPbMywiqIRTW1EqoH-ZZK65SK8SAjE2fdp61yOHZ8ONqJAMLdv03DmVsB9UvIWZllU3CCC_sv4UmEvY2JZ7Ga0jdl1_jKgLW-3jYHPCi5UrcqLi6I8Lvh9L-nVz2jxYU6q0LQ0tXCA3EhKs5Cv34Tq4BZaIZFMkzKMM-_hW4_10Rwpwc61Gyctg4lQKfh1WfOIkxkSyI"
+                src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459695/afobaino-films/gallery/afobaino-06.jpg"
                 alt="Cinematic camera setup"
                 class="absolute inset-0 w-full h-full object-cover"
             />
@@ -175,7 +175,7 @@ function submitForm() {
 
                     <div class="aspect-square w-full bg-surface-container overflow-hidden relative group">
                         <img
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZtdRQtO1a8Gz5nw6fB-ATnQRWSO8M8eysv_9JZB9jdKDmjNSbBb_6DAuowkcz4F6RI3LyOs1KTB07wHL5eReU-gW5BijyM8qeVAoDo9_jrG4FD80xM2XcwxH-Ts1dtDsouMposQlT-Ewl7jljkaPn8qqt_CbDEBMcv9-7ZmIgT7R8YAT0V8YLcNCNZy6eAHg7ZZCVfKxCFBvZXiCGFf5nPzNm6ICWLn2nOMCoXPZSy-dDjm0-riIdOpboOG9DYR9bFGzt1qMrfMg"
+                            src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459698/afobaino-films/gallery/afobaino-07.jpg"
                             alt="Studio location map"
                             class="w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-1000"
                         />

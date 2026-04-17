@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MediaUploadController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SettingController;
@@ -49,5 +50,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
         Route::put('/settings/site', [SettingController::class, 'updateSite'])->name('admin.settings.site');
         Route::put('/settings/profile', [SettingController::class, 'updateProfile'])->name('admin.settings.profile');
+
+        // Media uploads
+        Route::post('/media/image', [MediaUploadController::class, 'image'])->name('admin.media.image');
+        Route::post('/media/video', [MediaUploadController::class, 'video'])->name('admin.media.video');
     });
 });

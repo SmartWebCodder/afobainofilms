@@ -5,10 +5,10 @@ import { Link } from '@inertiajs/vue3';
 <template>
     <section class="py-24 md:py-32 px-6 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-20 items-center">
-            <div class="w-full md:w-[40%] aspect-4/5 overflow-hidden">
+            <div class="w-full md:w-[40%] aspect-4/5 overflow-hidden bg-surface-dim">
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcrZ9CCMVI3hOtuxgcgTmav-F2ODoQlciAz8ur1RFrjUQ3J8Sb6CvMj7NFi2oYGp8ENFUkXBF9dUBjgahKnwguqx7ObKGHhovsE4HRl-MlMBFpfwI_OKCo0GaEla3kI2AHJyLXu8Kfj9UmTyHhAqSIFTq24qAxFYvgyBTqasYXUFoQ-854xc_id0RBehqfO1kY3WMHVtu8W0rkMGuJFAmDGlFmbbwIPx0pVr7bhbgQhPDQGfRrMyZtWPxBg_94P5Jj4XaHzcUgyw0"
-                    alt="Filmmaker holding a vintage camera"
+                    src="https://images.unsplash.com/photo-1616469829935-c2f33ebd89b8?w=800&q=80&auto=format&fit=crop"
+                    alt="Filmmaker behind the camera"
                     class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
             </div>

@@ -28,7 +28,7 @@ function closeVideo() {
                     alt="Lucretia & David — A Wedding Film by Afobaino Films"
                     class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
                 />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="w-24 h-24 rounded-full border border-primary/50 flex items-center justify-center bg-black/20 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
                         <span class="material-symbols-outlined text-primary text-5xl">play_arrow</span>
@@ -66,7 +66,7 @@ function closeVideo() {
                 class="fixed inset-0 z-[70] flex items-center justify-center px-4"
                 @click.self="closeVideo"
             >
-                <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" @click="closeVideo" />
+                <div class="absolute inset-0 bg-black/90" @click="closeVideo" />
 
                 <div class="relative w-full max-w-5xl z-10">
                     <button

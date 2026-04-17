@@ -7,7 +7,7 @@ const services = [
         label: 'Motion',
         title: 'Wedding Cinematography',
         description: 'Capturing the unseen rhythms of your union. We focus on the quiet glances, the atmospheric tension, and the raw emotion that defines your legacy.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGNWWYhKbfbA4ZCPyttDP_tNo-XF9LnwzprTIo_eiZiNuvjgzPR-4e-NMPoZ-GBFGi0-0_Wlx7fMhIaqwDCxPV7z-f_NH2eiogEU_HDupVe21D8V8L9HKtQ39DjmBWG2dreFIRmQymi0YDXAFtdfXZkY1QbQA3pLFePBbBtzZPfQQOjv4bJZZTXejuOEfc2WPNAez2KwmGM8EYJMG7svWymCfk3EzEiW1T_g31xxbNPqCiHB3tFZxYe6s6ZP95lFxQNT6aRQJwMBo',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459582/afobaino-films/gallery/afobaino-01.jpg',
         alt: 'Bridal veil in the wind with vintage film grain',
         imgClass: 'grayscale-[0.2]',
     },
@@ -16,7 +16,7 @@ const services = [
         label: 'Stills',
         title: 'Editorial Photography',
         description: 'High-contrast, archival-grade imagery. Our photography service treats every frame as a standalone piece of art, blending fashion editorial aesthetics with documentary truth.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDYAJuFIpXvCskAI9XHLj-kt9ifRSPRNAIXDWWxy-6zKvVt-MeIVzkvRH8ePYWcm3yp1u3FVcCkVQeeng8jmMICf8Nh4W6WG3WMxEBUXJzFzRNIzf4Hr1TY3p-NKga8n2AZtcA2Hxtn5wYBpGFb9k82MaZo4r1V2hbGOl_MI0Q-meOmy94-2WjPwb3FUB44HHf8jyTP4LQE1SrnSphskOQ-XZo3jSnK4uZZsCtEioxQGm2PuWuAcH_iVksibhoSFK5lQwjunFH60uM',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459590/afobaino-films/gallery/afobaino-03.jpg',
         alt: 'Portrait in a vintage tuxedo',
         imgClass: 'grayscale',
         flipped: true,
@@ -26,7 +26,7 @@ const services = [
         label: 'Narrative',
         title: 'Creative Brand Films',
         description: 'Conceptual visual storytelling for the modern auteur. We translate brand identities into immersive cinematic experiences that resonate beyond the screen.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkVL3PlvHK_AxAEXUKhHqj1ViYZ80bb7IXmJuuUNk2waAxvVYhA8dNcxNLzCDQO1zyhFSu79hWmotBwnw-nMMSbCQPRXvtD4htGnlK89gYNawCeCsXFc0-Ph6sX-kGw67o3l-cMYU2osCB_yKKZrpJPP81HMFdmCrxSuA51aByM37jWoTTUJ3YTvQt3BsavjhmMJ9uVYADidbZw_2d2HxcTQBZBW_yTU8tCCqL_0Kn1AQQFdXp3STVmZEnPYysyAKWk438eFOJNOQ',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459691/afobaino-films/gallery/afobaino-05.jpg',
         alt: 'Light reflecting off water during blue hour',
         imgClass: '',
     },
@@ -45,7 +45,7 @@ const steps = [
         <header class="relative h-[512px] w-full overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 z-0">
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM1oVHxPD-Tq5DjJflFMK081lRCyaxioJqyTAXOMWNj_1nyWdQ62VVLY0w_xwEubIau2sgCYCTk-j9Iruf0QnPJzU4NeTAj42CcwHJGPqaH-Le8ACmBXAboCJbdWKZzEztOjvG0LoSDKkwOc_gmnX-hzVXgPhFVUdu-1QFWK_bdJpBV_ynMCht6-cyrwTnFs7vikbPr8VhueTtbqr7Kk1tuqo8vWzk9X_cgjilS1SKjKf8vtZvCSSq90AEHwx8hvKMllyTBeGgQ10"
+                    src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459585/afobaino-films/gallery/afobaino-02.jpg"
                     alt="Dramatic couple in a golden field"
                     class="w-full h-full object-cover brightness-50"
                 />

@@ -10,7 +10,7 @@ const videoLoaded = ref(false);
         <div class="absolute inset-0 z-0">
             <!-- Poster image shown while video loads -->
             <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlgEG__lTPaKgIjnUj40j2PC75HTfbgSAevEnwDhzmVN_Y1BT16fqgdG2lT35S21yIXCzIPbMywiqIRTW1EqoH-ZZK65SK8SAjE2fdp61yOHZ8ONqJAMLdv03DmVsB9UvIWZllU3CCC_sv4UmEvY2JZ7Ga0jdl1_jKgLW-3jYHPCi5UrcqLi6I8Lvh9L-nVz2jxYU6q0LQ0tXCA3EhKs5Cv34Tq4BZaIZFMkzKMM-_hW4_10Rwpwc61Gyctg4lQKfh1WfOIkxkSyI"
+                src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459594/afobaino-films/gallery/afobaino-04.jpg"
                 alt="Cinematic wedding scene with soft lens flare"
                 class="w-full h-full object-cover transition-opacity duration-700"
                 :class="videoLoaded ? 'opacity-0' : 'opacity-100'"

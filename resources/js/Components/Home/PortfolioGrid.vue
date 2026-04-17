@@ -3,28 +3,28 @@ import { Link } from '@inertiajs/vue3';
 
 const projects = [
     {
-        title: 'Midnight in Paris',
-        category: 'Short Film',
+        title: 'Eternal Frames',
+        category: 'Weddings',
         aspect: 'aspect-[3/4]',
         offset: '',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDQgXWTAmgC9nUspCOJXcRThBKIHllZ-L0yjUKMiJREouYNuguwF0h-yful54_4E0jRLQktjNd4eP9dBbh-HB8jXhD3UuSMuxZUwDu_RZWu5WqqV1ZfWiqkCtpv1XydAL-oWW0kky7ZnOy6F81bUpEeV4zVTqnYqbpSgshpl2fI-q5VKaGRFYi_n22P1LXGyyQHfQ6R6TWai1IUuGdhTD_VL9z6Cley6NJNlnlldRiPUbTMUYzSph8f7ybtV54Yko2RyOf3_RhvSjk',
-        alt: 'Black and white wedding veil in the wind',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459582/afobaino-films/gallery/afobaino-01.jpg',
+        alt: 'Bride and groom wedding portrait by Afobaino Films',
     },
     {
-        title: 'Vogue Memories',
-        category: 'Editorial',
+        title: 'Golden Hour',
+        category: 'Weddings',
         aspect: 'aspect-square',
         offset: 'md:mt-12',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhTDJbo0-9aGbSHkV8lkpoAmCFkrpy7hKZf-RNSux6lOedtvE2R2gjxYGXsQFFP_LBvZS9aZNqGSN2aG3FggEh3BGL5cAlA4oWUCtgzx8Ey23DzNIOzKSf5hKLCBDyLmx2yaQvQ4iJnGSbIh8FK7BvrIZqoHEwuZvvVN2HGmrQ7qsfZ333L9PaAQCay07v43Q6uq068MHvYitJRlokfILr9dz2OoKF7BrBEC04k3BdL1nL2-gGP19RXu6NWTzJo0DHqHJM08jF-Lw',
-        alt: 'Groom in velvet tuxedo under dramatic lighting',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459590/afobaino-films/gallery/afobaino-03.jpg',
+        alt: 'Wedding ceremony golden hour cinematography',
     },
     {
-        title: 'Above the Clouds',
-        category: 'Documentary',
+        title: 'Timeless Bond',
+        category: 'Weddings',
         aspect: 'aspect-[3/4]',
         offset: '',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCC7ep7_aTL2Bl8yNLRt8KAOCF7cg30tHHM47pJuedar2GB3vTc7AmQ_npbioAPlx4dHcMBMpZTummHkX7qpR_M9kSZOCyqhrO_yfBMJ8d_lEEG3XPwQvF-AbOMDzYKV5sl1aS6Ju9Ol6UhdQdaZcr7WP2SLP3GHuUlJHAyQn4Nm93OevHyWJTJzqNK4b5Pq789f1z_IYwfUbODFBu_2aJNV2l6LA87ephh4GKit6aA0ckdmg90ZC8fEIyrCgqrgaX8B70F2JT1zs',
-        alt: 'Couple on a mountain peak at sunrise',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459691/afobaino-films/gallery/afobaino-05.jpg',
+        alt: 'Couple portrait by Afobaino Films',
     },
 ];
 </script>

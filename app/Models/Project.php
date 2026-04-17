@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
     'cover_image',
     'gallery',
     'youtube_url',
+    'video_url',
     'tags',
     'is_featured',
     'is_published',

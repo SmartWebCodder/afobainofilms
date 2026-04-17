@@ -28,19 +28,19 @@ const processSteps = [
 
 const btsImages = [
     {
-        src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBuOFbyRxiAuFs2X_oVZbWr6a-gsUlRNfxcbffkN2zrYTHy0m_gMfFjaWsqW8BQUvlCzLbLMaTGfZQudts5eFAVXSgNOZupDqtH7RQNX1Ujnuq87LBEAWWFxR3Qo1OJNrhVl6mKCIkXJczJu-uXAaq6otUqdRH9dYrXFrnHhXGyWWhCS0x1rcgrH8OATnmFzuKZBgrdCCUZiNLJA1U30BTvGf73_UwfjIFL5IJjjA0cwtZQmWzxt4-u_CBkaw2xGxwlmQheaMTiWzM',
+        src: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459582/afobaino-films/gallery/afobaino-01.jpg',
         alt: 'Film set at night with HMI lights',
     },
     {
-        src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiavpD3c0GDSzCR5C2yttlmV8Orxy59IYpwKjYGT8XiQwp51uDCwRovb-J6tFBa6-4Xp6sz5XbRvhZt-rrntrjrBmisWMNG5JgKftj1LBUmGun-xroIYShcO6ZEUZo_P3TwYHr8QVlEEL4s7AwLllmwXrgmXmm0FIow7tM5vJQ-PPC6itZqez-u0ACBtnUSdSAh0fifQigTF7rn2zgnLDzNq201QtBkAAY_feIKM5Aow_94NKuzXnu9aBKzK_P7R4nvLBdsyYvzA0',
+        src: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459585/afobaino-films/gallery/afobaino-02.jpg',
         alt: 'Film editor using color grading panel',
     },
     {
-        src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFkTkltQcubJ-tj54bYvuzKmDO1bLz11Cc3eV8zsu6IKj-SFT8GDGiWebRTF7XC0b3Wq-qwQotIidLWOBtvi004lvb42OqEVfMcoTN-NBs-hiFsbIsPQeCR-2ZoWJjMEDylNLrsmD1v5nJjqjCKNxx1X8IS3mTAXfJavcTEGCkV9IwbNk12_KdXoF6PrImNmdDoBO_J7neCoWjqRbHnTosrRm6Ni5g1oAv0ggLRnLUKdARhXqJ9pb2bk1YUywPTwoQYfLwb3s6GeU',
+        src: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459590/afobaino-films/gallery/afobaino-03.jpg',
         alt: 'Cinematographer during a sunset beach shoot',
     },
     {
-        src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCh6K9HDuxs2-1kY0twYWH4XswK0_CNM6hH4sTTEA7IpjoRDxNRn1VAzXcNb1VZSVwu2JRqiKFCSOw6_b9ml_GnJ1DoTbOs5UVngakKv3DfdU4pEzbokTf5ozWRf_B6or7QC7epOJWCs6Wtm-iGjo5eTMkITgMd2vgIZKFDSyB-NYzt0gt-8x4-qJjCtSE5WeTC0JHpgSypLTLifMKy5hjk1wWd1y2YUvwSZyhshdulGtdQZdNltqKuzKaQG8PacnJALFbUi3toJAs',
+        src: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459594/afobaino-films/gallery/afobaino-04.jpg',
         alt: 'Equipment setup with clapperboard and lenses',
     },
 ];
@@ -51,7 +51,7 @@ const btsImages = [
         <header class="relative h-[716px] w-full overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 z-0">
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgBiGYbY9UThXj-RjGs_YJPpatuLyGEHPCi9zndK4t1OsxTmu4J5HW1RFOq1YA7DUcSOt-2fLawE095rjNycXeJ3BtSgbB30aiM6cYDEfktg1PiwLgR0a4Qsw7Jo6bFa4pqCdTgEv8jJZlBR4G-C9bPVZq5KBt_EEPijJBmegNG1Ix3-4Kx3Xt79WCLypzMSKpqoMmfydGwEQesuaxVGRCmon4Wk5sW9Wa9Le8jyFx7BzJhWW20uLyP5K6rTkV-758bWBjoK4UZXk"
+                    src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459691/afobaino-films/gallery/afobaino-05.jpg"
                     alt="Film crew in a misty forest at dawn"
                     class="w-full h-full object-cover brightness-50"
                 />
@@ -65,10 +65,10 @@ const btsImages = [
 
         <section class="bg-surface-dim py-24 md:py-40">
             <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-                <div class="relative aspect-3/4 overflow-hidden">
+                <div class="relative aspect-3/4 overflow-hidden bg-surface-dim">
                     <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuClgO7na67BRlfw2kCyra3-3zyYHamEMwDA80rmXasRs1BuEi9tUW0HobLC_6eWfZBk5sOj7M76g3a3sMHmhfYB-wV5tc5oO4LKkvHFd1vHaO69XnmJVm1OmwZfk0cLrI02w_gpd9JxudckTaUUPBFqYOwMSVM5QQ5DhkkcNjF3A6HePeiraJ2V1HSNkksqAdmxR5h5-QWBy-vb9Ow9gzA7wyDucqHqV6lsf7d-vtF33Nl89Efo4CayjvoPJxkEA-nAM95W9q5tZ98"
-                        alt="Portrait of a film director"
+                        src="https://images.unsplash.com/photo-1616469829935-c2f33ebd89b8?w=800&q=80&auto=format&fit=crop"
+                        alt="Portrait of the filmmaker"
                         class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                     />
                 </div>

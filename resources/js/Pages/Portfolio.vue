@@ -6,61 +6,51 @@ const props = defineProps({
 });
 
 const activeFilter = ref('All');
+const visibleCount = ref(6);
+const activeProject = ref(null);
 
 const fallbackProjects = [
     {
-        title: 'The Tuscane Vow',
+        title: 'Eternal Frames',
         category: 'Weddings',
-        location: 'Italy',
-        description: 'A narrative of silence and golden hills.',
-        duration: '04:20',
+        description: 'A timeless wedding captured in golden light.',
         aspect: 'aspect-[3/4]',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkK9acq3TjmrM32BAClBbtb-rzHc5SDwjLQvGhaJ72EctUftBqGH_g86xT7Xb6yklEjxCVY1YM_JosBi3HWoQ0gPHSLNutXqKkt6fHhu0vHxLRlCr-CWxSqsBvMxuSPT22SyOJaKkMqzKNitovg1zatPSw-kLOWR6Qkb3fN2Ru5YUqLkTiZNywLUd2qkOu7cIX-W3pmE1bfi-6yaKTMTqAEDOo7-HmT7N0i856tdUVvWGeQ2kzlDizItBvIK-_BKbeOVobmoDk0ls',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459582/afobaino-films/gallery/afobaino-01.jpg',
     },
     {
-        title: 'Nocturnal Rhythms',
-        category: 'Events',
-        location: 'London',
-        description: 'Capturing the pulse of the underground scene.',
-        duration: '12:45',
+        title: 'Golden Hour',
+        category: 'Weddings',
+        description: 'Warmth and beauty as the sun sets on a perfect day.',
         aspect: 'aspect-video',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKQ3OZGtdwwivv4senwdy7Yj11frXnH0moo9m9kxX1pz7UhVKRrHVkZ6WxjJVFfzsig2c3ufleBXgdOyJ7UWFjEC2tLZGclIIxRl_rvsrEgwMoUezcpWeYfjvOci33cLIV5uSHRa_GhstQF3bDQFJX0CF0zgix4kJaIcxPChVQ8szeAmW0uG8QLOgup7MHxLb4XA5gbAxbFgTdx3c_sMlV08IeGe-V6iyEdlFK6X-r2R2abJdgGD_ahjvvF_PtiCymMViyTnsQQZA',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459585/afobaino-films/gallery/afobaino-02.jpg',
     },
     {
-        title: 'Concrete Monoliths',
-        category: 'Commercial',
-        location: 'NYC',
-        description: 'A geometric study of urban solitude.',
-        duration: '01:30',
+        title: 'Sacred Moments',
+        category: 'Weddings',
+        description: 'Every detail whispers a story of love.',
         aspect: 'aspect-square',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCRfRS_C9yVOgsw27CrMlrWsJQGgPD7FnU7ggoAI_7hPGNsRYhRjzCjv8U-a6xxmAKUD-omOoBoj7nfi9Zdk6cXYV-STGmNIsOAq-htitSBEW-v1bIe_JEJgsNXRXPE-lLT8hvvrwepIuK6SxXQcGSdMms8rFSfo5Gas3v1e2knO2oRQ-iVEKoyd2S2K3nAJLqaA3iDj-7dPEL8y_r3Xl9lZgojIcwFW0w6S_bPWDEpW1PdbxechxayOnPyRwmbxbOEidYUrYYboug',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459590/afobaino-films/gallery/afobaino-03.jpg',
     },
     {
-        title: 'Elegance in Rain',
-        category: 'Editorial',
-        location: 'Paris',
-        description: 'Melancholy through a Parisian lens.',
-        duration: '02:15',
+        title: 'Timeless Bond',
+        category: 'Weddings',
+        description: 'Two souls woven together forever.',
         aspect: 'aspect-video',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9EH-a27hqzFDT0Ti_pR0m-v71IA3CnnhovQWfjwkKn6MW7z074DeCIHlS2p7rdq7RWdjWyQLeDM4tB38VV6UGT2mDkJxHeECznkhlxoQQn_0BRn1rbHj6yERtZBlLdeJrXNs1b8pxrbkPaA8IqWCvSE85tkNaDfft76QiUXz3U4odInW6NewqNnOHhPCXgBdvC9t1CeBsljtltMIGrSkpjCSREhZACZii8jKV6CDmnmC2xUQDasWTzH3qkKyAJ7gjgt9E-KdTFtQ',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459594/afobaino-films/gallery/afobaino-04.jpg',
     },
     {
-        title: 'Vinyl Echoes',
-        category: 'Editorial',
-        location: 'Berlin',
-        description: 'The analog soul of a digital age.',
-        duration: '08:00',
+        title: 'Radiant Joy',
+        category: 'Weddings',
+        description: 'A celebration of love and light.',
         aspect: 'aspect-[3/4]',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxma1Dl6JgO7fymAxrpOOOAxlAL-F95I30yIWC3jvUERcKVeo5w4botTwFT9ysp05EjcnALWDrzydMdJO4EAfw_G6Nvgb4vK3qkrqikitJyB7CORwcbshLIlVY4iYlkYO8rk5KeZQjqr4G-LlzIJz0E5m0nivVYcZkxQ9Y1nSB8cMvoRhzH8vXvL7TZ_deEyGahOqqVmzJ1oZ2t89kYeZ4aVoP-tnLDtbpCo_7-hRLgLf1FwXDfmt8Lc30w3eiMadsbs2g23v3-2g',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459691/afobaino-films/gallery/afobaino-05.jpg',
     },
     {
-        title: 'Peak Solitude',
-        category: 'Commercial',
-        location: 'Swiss Alps',
-        description: 'Where the earth meets the ether.',
-        duration: '03:45',
+        title: 'Whispered Vows',
+        category: 'Weddings',
+        description: 'Intimate promises under open skies.',
         aspect: 'aspect-video',
-        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDSjWZ6WWsOqqjcZ8YVa5fBDvXNo7J9dLb09kT80sqOoT3AXo14nHOdvWdk3xNGsLtXG5-FuCRmQYFwfdf-xHGTGYznSXaeurVcMCandRET05GmnJoJAzaUpQzCy8EeAsCrEO6OIfcp7t0K6NW4N1hGSMVb5ttcI-sdsrxezbfrS1QXK9n_KSb7WcZ0Wysz_0jHhtQqS5sO1LB9P7Gx7ZG9RCp2qvsKAnTnivxF2NntLm9sQISHW3Bstz3zSjujAtHUskTwHJZiubY',
+        cover_image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459695/afobaino-films/gallery/afobaino-06.jpg',
     },
 ];
 
@@ -83,6 +73,34 @@ const filteredProjects = computed(() => {
     if (activeFilter.value === 'All') return allProjects.value;
     return allProjects.value.filter(p => p.category === activeFilter.value);
 });
+
+const visibleProjects = computed(() => filteredProjects.value.slice(0, visibleCount.value));
+const hasMore = computed(() => visibleCount.value < filteredProjects.value.length);
+
+function loadMore() {
+    visibleCount.value += 6;
+}
+
+function changeFilter(f) {
+    activeFilter.value = f;
+    visibleCount.value = 6;
+}
+
+function extractYouTubeId(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&?/]+)/);
+    return match ? match[1] : null;
+}
+
+function openProject(project) {
+    activeProject.value = project;
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProject() {
+    activeProject.value = null;
+    document.body.style.overflow = '';
+}
 </script>
 
 <template>
@@ -91,7 +109,7 @@ const filteredProjects = computed(() => {
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-black/60 z-10"></div>
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-ZmMrA1zENdj3Xpq6G-BZXwDIiaEJaYg1RNVaFV1S_oIbyYusHg93Io4lbZlTNrREvA4pSQnr6dm823pL5Z8n-lyI-qRUrj0BscNOmHJsQbZLdaxhCNvg4Sh_3GFQ9p8mC6e-KAq1hxAkDHwSjUYkDMsJrDh9R6MskGMpxDOFcE54gIK8k2s9R3FGnGKb4kw4lwNHQZrI5Xe8XHtgVxQ5SQH9GQqoT09uJrLCOh2oCFCOEvcNV_qVytfRJwmvcmmi4mxSZIv54jA"
+                    src="https://res.cloudinary.com/dtetfimeq/image/upload/v1776459698/afobaino-films/gallery/afobaino-07.jpg"
                     alt="Portfolio Background"
                     class="w-full h-full object-cover blur-sm scale-105"
                 />
@@ -102,11 +120,11 @@ const filteredProjects = computed(() => {
                     <button
                         v-for="filter in filters"
                         :key="filter"
-                        class="px-8 py-2 font-sans text-xs tracking-widest uppercase transition-colors duration-300"
+                        class="px-8 py-2 font-sans text-xs tracking-widest uppercase transition-colors duration-300 cursor-pointer"
                         :class="activeFilter === filter
                             ? 'border-b-2 border-primary text-primary bg-black/30 backdrop-blur-sm'
                             : 'border-b border-transparent text-white/70 hover:text-primary'"
-                        @click="activeFilter = filter"
+                        @click="changeFilter(filter)"
                     >
                         {{ filter }}
                     </button>
@@ -117,9 +135,10 @@ const filteredProjects = computed(() => {
         <main class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
             <div class="columns-1 md:columns-2 lg:columns-3 gap-8">
                 <div
-                    v-for="project in filteredProjects"
+                    v-for="project in visibleProjects"
                     :key="project.title"
                     class="break-inside-avoid mb-8 group relative overflow-hidden bg-surface-dim cursor-pointer transition-all duration-700"
+                    @click="openProject(project)"
                 >
                     <div :class="['relative overflow-hidden', project.aspect || 'aspect-video']">
                         <img
@@ -129,7 +148,9 @@ const filteredProjects = computed(() => {
                         />
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <span class="w-24 h-24 rounded-full bg-primary/90 text-white flex items-center justify-center font-sans text-xs font-bold tracking-[0.2em]">VIEW</span>
+                            <span class="w-20 h-20 rounded-full border-2 border-white/80 text-white flex items-center justify-center backdrop-blur-sm bg-black/30">
+                                <span class="material-symbols-outlined text-3xl">play_arrow</span>
+                            </span>
                         </div>
                     </div>
                     <div class="p-8 space-y-4">
@@ -139,11 +160,77 @@ const filteredProjects = computed(() => {
                 </div>
             </div>
 
-            <div class="flex justify-center mt-24">
-                <button class="group relative px-12 py-4 border border-primary overflow-hidden transition-all duration-500 hover:bg-primary">
+            <div v-if="hasMore" class="flex justify-center mt-24">
+                <button
+                    @click="loadMore"
+                    class="group relative px-12 py-4 border border-primary overflow-hidden transition-all duration-500 hover:bg-primary cursor-pointer"
+                >
                     <span class="relative z-10 font-sans text-xs tracking-[0.3em] uppercase text-primary group-hover:text-white transition-colors duration-500">Load More Works</span>
                 </button>
             </div>
         </main>
     </div>
+
+    <!-- Project Video Modal -->
+    <Teleport to="body">
+        <Transition
+            enter-active-class="transition duration-300"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition duration-200"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+        >
+            <div
+                v-if="activeProject"
+                class="fixed inset-0 z-[70] flex items-center justify-center px-4"
+                @click.self="closeProject"
+            >
+                <div class="absolute inset-0 bg-black/90" @click="closeProject" />
+
+                <div class="relative w-full max-w-5xl z-10">
+                    <button
+                        @click="closeProject"
+                        class="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors cursor-pointer"
+                    >
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+
+                    <!-- YouTube embed if project has youtube_url -->
+                    <div v-if="extractYouTubeId(activeProject.youtube_url)" class="aspect-video w-full">
+                        <iframe
+                            :src="`https://www.youtube.com/embed/${extractYouTubeId(activeProject.youtube_url)}?autoplay=1&rel=0`"
+                            class="w-full h-full"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            :title="activeProject.title"
+                        ></iframe>
+                    </div>
+
+                    <!-- Direct video (MP4) playback -->
+                    <div v-else-if="activeProject.video_url" class="aspect-video w-full bg-black">
+                        <video
+                            :src="activeProject.video_url"
+                            :poster="activeProject.cover_image"
+                            controls
+                            autoplay
+                            class="w-full h-full"
+                        ></video>
+                    </div>
+
+                    <!-- Fallback: show cover image with project details -->
+                    <div v-else class="bg-surface-dark">
+                        <div class="aspect-video w-full overflow-hidden">
+                            <img :src="activeProject.cover_image" :alt="activeProject.title" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-8 text-center">
+                            <h3 class="font-headline text-3xl text-white mb-2">{{ activeProject.title }}</h3>
+                            <p class="font-serif text-lg text-white/60 italic">{{ activeProject.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Transition>
+    </Teleport>
 </template>
