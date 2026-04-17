@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ContactController;
 use App\Models\Testimonial;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,7 +17,9 @@ Route::get('/', function () {
         'testimonials' => Testimonial::active()->orderBy('sort_order')->get(),
     ]);
 })->name('home');
-Route::get('/portfolio', fn() => Inertia::render('Portfolio'))->name('portfolio');
+Route::get('/portfolio', fn() => Inertia::render('Portfolio', [
+    'projects' => Project::published()->orderBy('sort_order')->get(),
+]))->name('portfolio');
 Route::get('/about', fn() => Inertia::render('About'))->name('about');
 Route::get('/services', fn() => Inertia::render('Services'))->name('services');
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');

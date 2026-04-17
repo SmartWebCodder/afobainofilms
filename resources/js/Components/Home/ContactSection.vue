@@ -71,53 +71,45 @@ function submit() {
                     </button>
                 </div>
 
-                <form v-else class="space-y-10" @submit.prevent="submit">
+                <form v-else class="space-y-10" @submit.prevent="submit" autocomplete="off">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                         <div class="relative">
                             <input
                                 v-model="form.name"
                                 type="text"
-                                placeholder=" "
-                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                placeholder="Full Name"
+                                autocomplete="off"
+                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                             />
-                            <label class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary">
-                                Full Name
-                            </label>
                             <p v-if="form.errors.name" class="text-error text-xs mt-1">{{ form.errors.name }}</p>
                         </div>
                         <div class="relative">
                             <input
                                 v-model="form.email"
                                 type="email"
-                                placeholder=" "
-                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                placeholder="Email Address"
+                                autocomplete="off"
+                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                             />
-                            <label class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary">
-                                Email Address
-                            </label>
                             <p v-if="form.errors.email" class="text-error text-xs mt-1">{{ form.errors.email }}</p>
                         </div>
                         <div class="relative">
                             <input
                                 v-model="form.phone"
                                 type="tel"
-                                placeholder=" "
-                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                placeholder="Phone Number"
+                                autocomplete="off"
+                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                             />
-                            <label class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary">
-                                Phone Number
-                            </label>
                         </div>
                         <div class="relative">
                             <input
                                 v-model="form.event_date"
                                 type="text"
-                                placeholder=" "
-                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                placeholder="Event Date"
+                                autocomplete="off"
+                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                             />
-                            <label class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary">
-                                Event Date
-                            </label>
                         </div>
                     </div>
 
@@ -125,7 +117,7 @@ function submit() {
                         <label class="block font-sans text-xs uppercase tracking-widest text-primary mb-2">Service Category</label>
                         <select
                             v-model="form.event_type"
-                            class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors"
+                            class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                         >
                             <option value="" disabled>Select Event Type</option>
                             <option value="cinematic">Cinematic Feature</option>
@@ -139,12 +131,10 @@ function submit() {
                         <textarea
                             v-model="form.vision"
                             rows="3"
-                            placeholder=" "
-                            class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent resize-none"
+                            placeholder="Your Creative Vision"
+                            autocomplete="off"
+                            class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors resize-none"
                         ></textarea>
-                        <label class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary">
-                            Your Creative Vision
-                        </label>
                     </div>
 
                     <button

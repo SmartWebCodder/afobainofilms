@@ -1,10 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-const activeFilter = ref('All');
-const filters = ['All', 'Weddings', 'Events', 'Editorial', 'Commercial'];
+const props = defineProps({
+    projects: { type: Array, default: () => [] },
+});
 
-const projects = [
+const activeFilter = ref('All');
+
+const fallbackProjects = [
     {
         title: 'The Tuscane Vow',
         category: 'Weddings',
@@ -12,7 +15,7 @@ const projects = [
         description: 'A narrative of silence and golden hills.',
         duration: '04:20',
         aspect: 'aspect-[3/4]',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkK9acq3TjmrM32BAClBbtb-rzHc5SDwjLQvGhaJ72EctUftBqGH_g86xT7Xb6yklEjxCVY1YM_JosBi3HWoQ0gPHSLNutXqKkt6fHhu0vHxLRlCr-CWxSqsBvMxuSPT22SyOJaKkMqzKNitovg1zatPSw-kLOWR6Qkb3fN2Ru5YUqLkTiZNywLUd2qkOu7cIX-W3pmE1bfi-6yaKTMTqAEDOo7-HmT7N0i856tdUVvWGeQ2kzlDizItBvIK-_BKbeOVobmoDk0ls',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkK9acq3TjmrM32BAClBbtb-rzHc5SDwjLQvGhaJ72EctUftBqGH_g86xT7Xb6yklEjxCVY1YM_JosBi3HWoQ0gPHSLNutXqKkt6fHhu0vHxLRlCr-CWxSqsBvMxuSPT22SyOJaKkMqzKNitovg1zatPSw-kLOWR6Qkb3fN2Ru5YUqLkTiZNywLUd2qkOu7cIX-W3pmE1bfi-6yaKTMTqAEDOo7-HmT7N0i856tdUVvWGeQ2kzlDizItBvIK-_BKbeOVobmoDk0ls',
     },
     {
         title: 'Nocturnal Rhythms',
@@ -21,7 +24,7 @@ const projects = [
         description: 'Capturing the pulse of the underground scene.',
         duration: '12:45',
         aspect: 'aspect-video',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKQ3OZGtdwwivv4senwdy7Yj11frXnH0moo9m9kxX1pz7UhVKRrHVkZ6WxjJVFfzsig2c3ufleBXgdOyJ7UWFjEC2tLZGclIIxRl_rvsrEgwMoUezcpWeYfjvOci33cLIV5uSHRa_GhstQF3bDQFJX0CF0zgix4kJaIcxPChVQ8szeAmW0uG8QLOgup7MHxLb4XA5gbAxbFgTdx3c_sMlV08IeGe-V6iyEdlFK6X-r2R2abJdgGD_ahjvvF_PtiCymMViyTnsQQZA',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKQ3OZGtdwwivv4senwdy7Yj11frXnH0moo9m9kxX1pz7UhVKRrHVkZ6WxjJVFfzsig2c3ufleBXgdOyJ7UWFjEC2tLZGclIIxRl_rvsrEgwMoUezcpWeYfjvOci33cLIV5uSHRa_GhstQF3bDQFJX0CF0zgix4kJaIcxPChVQ8szeAmW0uG8QLOgup7MHxLb4XA5gbAxbFgTdx3c_sMlV08IeGe-V6iyEdlFK6X-r2R2abJdgGD_ahjvvF_PtiCymMViyTnsQQZA',
     },
     {
         title: 'Concrete Monoliths',
@@ -30,7 +33,7 @@ const projects = [
         description: 'A geometric study of urban solitude.',
         duration: '01:30',
         aspect: 'aspect-square',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCRfRS_C9yVOgsw27CrMlrWsJQGgPD7FnU7ggoAI_7hPGNsRYhRjzCjv8U-a6xxmAKUD-omOoBoj7nfi9Zdk6cXYV-STGmNIsOAq-htitSBEW-v1bIe_JEJgsNXRXPE-lLT8hvvrwepIuK6SxXQcGSdMms8rFSfo5Gas3v1e2knO2oRQ-iVEKoyd2S2K3nAJLqaA3iDj-7dPEL8y_r3Xl9lZgojIcwFW0w6S_bPWDEpW1PdbxechxayOnPyRwmbxbOEidYUrYYboug',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCRfRS_C9yVOgsw27CrMlrWsJQGgPD7FnU7ggoAI_7hPGNsRYhRjzCjv8U-a6xxmAKUD-omOoBoj7nfi9Zdk6cXYV-STGmNIsOAq-htitSBEW-v1bIe_JEJgsNXRXPE-lLT8hvvrwepIuK6SxXQcGSdMms8rFSfo5Gas3v1e2knO2oRQ-iVEKoyd2S2K3nAJLqaA3iDj-7dPEL8y_r3Xl9lZgojIcwFW0w6S_bPWDEpW1PdbxechxayOnPyRwmbxbOEidYUrYYboug',
     },
     {
         title: 'Elegance in Rain',
@@ -39,7 +42,7 @@ const projects = [
         description: 'Melancholy through a Parisian lens.',
         duration: '02:15',
         aspect: 'aspect-video',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9EH-a27hqzFDT0Ti_pR0m-v71IA3CnnhovQWfjwkKn6MW7z074DeCIHlS2p7rdq7RWdjWyQLeDM4tB38VV6UGT2mDkJxHeECznkhlxoQQn_0BRn1rbHj6yERtZBlLdeJrXNs1b8pxrbkPaA8IqWCvSE85tkNaDfft76QiUXz3U4odInW6NewqNnOHhPCXgBdvC9t1CeBsljtltMIGrSkpjCSREhZACZii8jKV6CDmnmC2xUQDasWTzH3qkKyAJ7gjgt9E-KdTFtQ',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9EH-a27hqzFDT0Ti_pR0m-v71IA3CnnhovQWfjwkKn6MW7z074DeCIHlS2p7rdq7RWdjWyQLeDM4tB38VV6UGT2mDkJxHeECznkhlxoQQn_0BRn1rbHj6yERtZBlLdeJrXNs1b8pxrbkPaA8IqWCvSE85tkNaDfft76QiUXz3U4odInW6NewqNnOHhPCXgBdvC9t1CeBsljtltMIGrSkpjCSREhZACZii8jKV6CDmnmC2xUQDasWTzH3qkKyAJ7gjgt9E-KdTFtQ',
     },
     {
         title: 'Vinyl Echoes',
@@ -48,7 +51,7 @@ const projects = [
         description: 'The analog soul of a digital age.',
         duration: '08:00',
         aspect: 'aspect-[3/4]',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxma1Dl6JgO7fymAxrpOOOAxlAL-F95I30yIWC3jvUERcKVeo5w4botTwFT9ysp05EjcnALWDrzydMdJO4EAfw_G6Nvgb4vK3qkrqikitJyB7CORwcbshLIlVY4iYlkYO8rk5KeZQjqr4G-LlzIJz0E5m0nivVYcZkxQ9Y1nSB8cMvoRhzH8vXvL7TZ_deEyGahOqqVmzJ1oZ2t89kYeZ4aVoP-tnLDtbpCo_7-hRLgLf1FwXDfmt8Lc30w3eiMadsbs2g23v3-2g',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxma1Dl6JgO7fymAxrpOOOAxlAL-F95I30yIWC3jvUERcKVeo5w4botTwFT9ysp05EjcnALWDrzydMdJO4EAfw_G6Nvgb4vK3qkrqikitJyB7CORwcbshLIlVY4iYlkYO8rk5KeZQjqr4G-LlzIJz0E5m0nivVYcZkxQ9Y1nSB8cMvoRhzH8vXvL7TZ_deEyGahOqqVmzJ1oZ2t89kYeZ4aVoP-tnLDtbpCo_7-hRLgLf1FwXDfmt8Lc30w3eiMadsbs2g23v3-2g',
     },
     {
         title: 'Peak Solitude',
@@ -57,13 +60,28 @@ const projects = [
         description: 'Where the earth meets the ether.',
         duration: '03:45',
         aspect: 'aspect-video',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDSjWZ6WWsOqqjcZ8YVa5fBDvXNo7J9dLb09kT80sqOoT3AXo14nHOdvWdk3xNGsLtXG5-FuCRmQYFwfdf-xHGTGYznSXaeurVcMCandRET05GmnJoJAzaUpQzCy8EeAsCrEO6OIfcp7t0K6NW4N1hGSMVb5ttcI-sdsrxezbfrS1QXK9n_KSb7WcZ0Wysz_0jHhtQqS5sO1LB9P7Gx7ZG9RCp2qvsKAnTnivxF2NntLm9sQISHW3Bstz3zSjujAtHUskTwHJZiubY',
+        cover_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDSjWZ6WWsOqqjcZ8YVa5fBDvXNo7J9dLb09kT80sqOoT3AXo14nHOdvWdk3xNGsLtXG5-FuCRmQYFwfdf-xHGTGYznSXaeurVcMCandRET05GmnJoJAzaUpQzCy8EeAsCrEO6OIfcp7t0K6NW4N1hGSMVb5ttcI-sdsrxezbfrS1QXK9n_KSb7WcZ0Wysz_0jHhtQqS5sO1LB9P7Gx7ZG9RCp2qvsKAnTnivxF2NntLm9sQISHW3Bstz3zSjujAtHUskTwHJZiubY',
     },
 ];
 
+const allProjects = computed(() => {
+    if (props.projects.length > 0) {
+        return props.projects.map(p => ({
+            ...p,
+            aspect: p.category === 'Weddings' ? 'aspect-[3/4]' : p.category === 'Events' ? 'aspect-video' : 'aspect-square',
+        }));
+    }
+    return fallbackProjects;
+});
+
+const filters = computed(() => {
+    const cats = [...new Set(allProjects.value.map(p => p.category))];
+    return ['All', ...cats];
+});
+
 const filteredProjects = computed(() => {
-    if (activeFilter.value === 'All') return projects;
-    return projects.filter(p => p.category === activeFilter.value);
+    if (activeFilter.value === 'All') return allProjects.value;
+    return allProjects.value.filter(p => p.category === activeFilter.value);
 });
 </script>
 
@@ -103,9 +121,9 @@ const filteredProjects = computed(() => {
                     :key="project.title"
                     class="break-inside-avoid mb-8 group relative overflow-hidden bg-surface-dim cursor-pointer transition-all duration-700"
                 >
-                    <div :class="['relative overflow-hidden', project.aspect]">
+                    <div :class="['relative overflow-hidden', project.aspect || 'aspect-video']">
                         <img
-                            :src="project.image"
+                            :src="project.cover_image"
                             :alt="project.title"
                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         />

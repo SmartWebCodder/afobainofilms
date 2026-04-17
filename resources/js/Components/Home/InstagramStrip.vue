@@ -1,4 +1,9 @@
 <script setup>
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const instagramUrl = computed(() => usePage().props.socials?.instagram_url || 'https://www.instagram.com/afobainofilms/');
+
 const images = [
     {
         src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeS6HvMfR4UUt76Ig2rgPVgH045yIdeJI7xfbM_rq2ooASzaBVdy4DMYJfytDSvgY1vaXCvDyYjv-KLbke4zo8ABj9YTxOxHboPQNULcBX9WwS2mtqbdSEVfoiVEWMb8pnE3tDjz_U2CIwAPv3Lm20cOMUEOO3viu3ZX-tEWZnApTSnc8RMC0vIGrbuMrB-H8xYUQTOkakh1krW1m1LTUXpnKbf_ohlX_OCQtNYV96VWsrvcnf1dg8_bnhRhRURZBKkpfIB0Gfdmw',
@@ -28,20 +33,31 @@ const images = [
 </script>
 
 <template>
-    <section class="grid grid-cols-2 md:grid-cols-6 w-full">
-        <div
-            v-for="img in images"
-            :key="img.alt"
-            class="aspect-square overflow-hidden relative group"
-        >
-            <img
-                :src="img.src"
-                :alt="img.alt"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="material-symbols-outlined text-white">camera</span>
+    <section class="relative">
+        <a :href="instagramUrl" target="_blank" rel="noopener" class="block">
+            <div class="grid grid-cols-2 md:grid-cols-6 w-full">
+                <div
+                    v-for="img in images"
+                    :key="img.alt"
+                    class="aspect-square overflow-hidden relative group"
+                >
+                    <img
+                        :src="img.src"
+                        :alt="img.alt"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white">camera</span>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500 bg-black/40">
+                <div class="text-center text-white">
+                    <span class="material-symbols-outlined text-4xl mb-2">photo_camera</span>
+                    <p class="font-sans text-xs uppercase tracking-[0.3em]">Follow us on Instagram</p>
+                    <p class="font-headline text-lg mt-1">@afobainofilms</p>
+                </div>
+            </div>
+        </a>
     </section>
 </template>

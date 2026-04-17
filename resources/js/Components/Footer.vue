@@ -1,5 +1,6 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const currentYear = new Date().getFullYear();
 
@@ -10,11 +11,18 @@ const quickLinks = [
     { name: 'Contact', href: '/contact' },
 ];
 
-const socials = [
-    { name: 'Instagram', href: '#', icon: 'photo_camera' },
-    { name: 'YouTube', href: '#', icon: 'smart_display' },
-    { name: 'TikTok', href: '#', icon: 'music_note' },
-];
+const page = usePage();
+const socials = computed(() => {
+    const s = page.props.socials ?? {};
+    const list = [];
+    if (s.instagram_url) list.push({ name: 'Instagram', href: s.instagram_url, icon: 'photo_camera' });
+    if (s.youtube_url) list.push({ name: 'YouTube', href: s.youtube_url, icon: 'smart_display' });
+    if (s.tiktok_url) list.push({ name: 'TikTok', href: s.tiktok_url, icon: 'music_note' });
+    if (s.facebook_url) list.push({ name: 'Facebook', href: s.facebook_url, icon: 'group' });
+    return list;
+});
+
+const contactEmail = computed(() => page.props.booking?.contact_email || 'hello@afobainofilms.com');
 </script>
 
 <template>
@@ -60,10 +68,10 @@ const socials = [
                         </a>
                     </div>
                     <a
-                        href="mailto:hello@afobainofilms.com"
+                        :href="`mailto:${contactEmail}`"
                         class="text-xs uppercase tracking-[0.15em] hover:text-primary transition-colors"
                     >
-                        hello@afobainofilms.com
+                        {{ contactEmail }}
                     </a>
                 </div>
             </div>

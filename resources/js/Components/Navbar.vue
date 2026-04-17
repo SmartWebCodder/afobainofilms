@@ -1,9 +1,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import BookingModal from '@/Components/BookingModal.vue';
 
 const scrolled = ref(false);
 const mobileOpen = ref(false);
+const showBooking = ref(false);
 
 const navLinks = [
     { name: 'Home', href: '/' },
@@ -56,15 +58,15 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
                 </Link>
             </div>
 
-            <Link
-                href="/contact"
-                class="hidden md:inline-block font-headline uppercase tracking-[0.15em] text-sm px-6 py-2 border transition-all duration-300"
+            <button
+                @click="showBooking = true"
+                class="hidden md:inline-block font-headline uppercase tracking-[0.15em] text-sm px-6 py-2 border transition-all duration-300 cursor-pointer"
                 :class="scrolled
                     ? 'border-primary/40 text-primary hover:bg-primary hover:text-white'
                     : 'border-white/40 text-white hover:bg-primary hover:text-white hover:border-primary'"
             >
                 Book Now
-            </Link>
+            </button>
 
             <!-- Mobile hamburger -->
             <button
@@ -111,13 +113,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
             >
                 {{ link.name }}
             </Link>
-            <Link
-                href="/contact"
-                class="mt-4 px-8 py-3 bg-primary text-white font-headline uppercase tracking-[0.15em] text-sm"
-                @click="closeMobile"
+            <button
+                @click="closeMobile(); showBooking = true;"
+                class="mt-4 px-8 py-3 bg-primary text-white font-headline uppercase tracking-[0.15em] text-sm cursor-pointer"
             >
                 Book Now
-            </Link>
+            </button>
         </div>
     </Transition>
+
+    <BookingModal :open="showBooking" @close="showBooking = false" />
 </template>

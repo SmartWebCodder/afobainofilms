@@ -13,15 +13,15 @@ const form = useForm({
 
 const submitted = ref(false);
 
-const faqs = [
-    { question: 'Do you travel for destination films?', open: false },
-    { question: 'What is the typical turnaround for an editorial edit?', open: false },
-    { question: 'How many cinematographers are on set?', open: false },
-    { question: 'Do we receive the raw footage?', open: false },
-];
+const faqs = ref([
+    { question: 'Do you travel for destination films?', answer: 'Absolutely. We have filmed across multiple continents and love capturing stories in breathtaking locations. Travel fees are included in our destination packages.', open: false },
+    { question: 'What is the typical turnaround for an editorial edit?', answer: 'Our standard delivery is 8-12 weeks for a cinematic wedding film. Highlight reels are typically delivered within 4-6 weeks. Rush delivery is available upon request.', open: false },
+    { question: 'How many cinematographers are on set?', answer: 'Our standard packages include two cinematographers to ensure comprehensive coverage. Larger events may include three or more depending on the scope of the production.', open: false },
+    { question: 'Do we receive the raw footage?', answer: 'Raw footage is available as an add-on. We provide all final edited deliverables in 4K resolution, along with a curated selection of behind-the-scenes moments.', open: false },
+]);
 
 function toggleFaq(index) {
-    faqs[index].open = !faqs[index].open;
+    faqs.value[index].open = !faqs.value[index].open;
 }
 
 function submitForm() {
@@ -37,9 +37,15 @@ function submitForm() {
 
 <template>
     <div>
-        <header class="relative h-102.25 flex items-center justify-center overflow-hidden bg-surface-dim">
+        <header class="relative h-102.25 flex items-center justify-center overflow-hidden">
+            <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlgEG__lTPaKgIjnUj40j2PC75HTfbgSAevEnwDhzmVN_Y1BT16fqgdG2lT35S21yIXCzIPbMywiqIRTW1EqoH-ZZK65SK8SAjE2fdp61yOHZ8ONqJAMLdv03DmVsB9UvIWZllU3CCC_sv4UmEvY2JZ7Ga0jdl1_jKgLW-3jYHPCi5UrcqLi6I8Lvh9L-nVz2jxYU6q0LQ0tXCA3EhKs5Cv34Tq4BZaIZFMkzKMM-_hW4_10Rwpwc61Gyctg4lQKfh1WfOIkxkSyI"
+                alt="Cinematic camera setup"
+                class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative z-10 text-center px-6">
-                <h1 class="text-4xl md:text-6xl font-headline italic tracking-tight text-on-surface">Start Your Story With Us</h1>
+                <h1 class="text-4xl md:text-6xl font-headline italic tracking-tight text-white">Start Your Story With Us</h1>
                 <div class="mt-4 flex justify-center">
                     <div class="w-12 h-px bg-primary/40"></div>
                 </div>
@@ -54,67 +60,47 @@ function submitForm() {
                         <h2 class="text-3xl font-headline text-on-surface">The Canvas Awaits</h2>
                     </div>
 
-                    <form class="space-y-12" @submit.prevent="submitForm">
+                    <form class="space-y-12" @submit.prevent="submitForm" autocomplete="off">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
                             <div class="relative">
                                 <input
                                     id="name"
                                     v-model="form.name"
                                     type="text"
-                                    placeholder=" "
-                                    class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                    placeholder="Full Name"
+                                    autocomplete="off"
+                                    class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                                 />
-                                <label
-                                    for="name"
-                                    class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary"
-                                >
-                                    Full Name
-                                </label>
                             </div>
                             <div class="relative">
                                 <input
                                     id="email"
                                     v-model="form.email"
                                     type="email"
-                                    placeholder=" "
-                                    class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                    placeholder="Email Address"
+                                    autocomplete="off"
+                                    class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                                 />
-                                <label
-                                    for="email"
-                                    class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary"
-                                >
-                                    Email Address
-                                </label>
                             </div>
                             <div class="relative">
                                 <input
                                     id="phone"
                                     v-model="form.phone"
                                     type="tel"
-                                    placeholder=" "
-                                    class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                    placeholder="Phone Number"
+                                    autocomplete="off"
+                                    class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                                 />
-                                <label
-                                    for="phone"
-                                    class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary"
-                                >
-                                    Phone Number
-                                </label>
                             </div>
                             <div class="relative">
                                 <input
                                     id="date"
                                     v-model="form.event_date"
                                     type="text"
-                                    placeholder=" "
-                                    class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent"
+                                    placeholder="Event Date"
+                                    autocomplete="off"
+                                    class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                                 />
-                                <label
-                                    for="date"
-                                    class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary"
-                                >
-                                    Event Date
-                                </label>
                             </div>
                         </div>
 
@@ -123,7 +109,7 @@ function submitForm() {
                             <select
                                 id="type"
                                 v-model="form.event_type"
-                                class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors"
+                                class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                             >
                                 <option value="" disabled>Select Event Type</option>
                                 <option value="cinematic">Cinematic Feature</option>
@@ -138,15 +124,10 @@ function submitForm() {
                                 id="vision"
                                 v-model="form.vision"
                                 rows="4"
-                                placeholder=" "
-                                class="peer block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 transition-colors placeholder-transparent resize-none"
+                                placeholder="Your Creative Vision"
+                                autocomplete="off"
+                                class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors resize-none"
                             ></textarea>
-                            <label
-                                for="vision"
-                                class="absolute top-3 -z-10 origin-left -translate-y-6 scale-75 transform font-sans text-sm uppercase tracking-widest text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary"
-                            >
-                                Your Creative Vision
-                            </label>
                         </div>
 
                         <button
@@ -225,11 +206,17 @@ function submitForm() {
                         <div class="flex justify-between items-center gap-8">
                             <h4 class="text-lg font-headline italic text-on-surface group-hover:text-primary transition-colors">{{ faq.question }}</h4>
                             <span
-                                class="material-symbols-outlined text-primary transition-transform duration-300"
+                                class="material-symbols-outlined text-primary transition-transform duration-300 flex-shrink-0"
                                 :class="faq.open ? 'rotate-45' : ''"
                             >
                                 add
                             </span>
+                        </div>
+                        <div
+                            class="overflow-hidden transition-all duration-300"
+                            :style="{ maxHeight: faq.open ? '200px' : '0px', opacity: faq.open ? 1 : 0 }"
+                        >
+                            <p class="pt-4 text-on-surface-variant text-sm leading-relaxed">{{ faq.answer }}</p>
                         </div>
                     </div>
                 </div>

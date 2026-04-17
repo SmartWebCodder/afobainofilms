@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@afobaino.com',
             'password' => bcrypt('password'),
         ]);
+
+        $this->call([
+            SettingSeeder::class,
+            TestimonialSeeder::class,
+        ]);
     }
 }

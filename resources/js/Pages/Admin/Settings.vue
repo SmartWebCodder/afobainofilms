@@ -35,9 +35,9 @@ function saveProfile() {
 const siteFields = [
     { key: 'site_title', label: 'Site Title', type: 'text' },
     { key: 'tagline', label: 'Tagline', type: 'text' },
-    { key: 'logo_url', label: 'Logo URL', type: 'text' },
     { key: 'contact_email', label: 'Contact Email', type: 'email' },
     { key: 'whatsapp_number', label: 'WhatsApp Number', type: 'text' },
+    { key: 'phone_number', label: 'Phone Number', type: 'text' },
     { key: 'instagram_url', label: 'Instagram URL', type: 'url' },
     { key: 'youtube_url', label: 'YouTube URL', type: 'url' },
     { key: 'tiktok_url', label: 'TikTok URL', type: 'url' },

@@ -14,8 +14,8 @@ class SettingController extends Controller
     private const SITE_KEYS = [
         'site_title',
         'tagline',
-        'logo_url',
         'whatsapp_number',
+        'phone_number',
         'contact_email',
         'instagram_url',
         'youtube_url',
@@ -41,8 +41,8 @@ class SettingController extends Controller
         $data = $request->validate([
             'site_title' => ['nullable', 'string', 'max:255'],
             'tagline' => ['nullable', 'string', 'max:500'],
-            'logo_url' => ['nullable', 'string'],
             'whatsapp_number' => ['nullable', 'string', 'max:20'],
+            'phone_number' => ['nullable', 'string', 'max:20'],
             'contact_email' => ['nullable', 'email'],
             'instagram_url' => ['nullable', 'url'],
             'youtube_url' => ['nullable', 'url'],
