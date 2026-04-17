@@ -28,4 +28,7 @@ Thumbs.db
 # Project-specific
 *.mp4
 /STITCH_PROMPT.md
+/sample_img
+/_*.php
+/=
 /afobainofilms-backup

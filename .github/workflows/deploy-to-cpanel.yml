@@ -18,12 +18,12 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: "8.4"
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '22'
+          node-version: "22"
 
       - name: Install PHP dependencies
         run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
@@ -32,6 +32,11 @@ jobs:
         run: |
           npm ci
           npm run build
+
+      - name: Prepare production files
+        run: |
+          # Replace public/index.php with cPanel version pointing to ../afobainofilms/
+          cp deploy/cpanel-index.php public/index.php
 
       - name: Deploy to cPanel via LFTP
         run: |
@@ -48,17 +53,37 @@ jobs:
             set mirror:parallel-transfer-count 4;
             set cmd:fail-exit no;
             open -u ${{ secrets.CPANEL_FTP_USERNAME }},${{ secrets.CPANEL_FTP_PASSWORD }} ${{ secrets.CPANEL_FTP_HOST }};
+
+            # ── 1. Ensure storage & cache directories exist on server ──
+            mkdir -p afobainofilms/storage/framework/sessions;
+            mkdir -p afobainofilms/storage/framework/views;
+            mkdir -p afobainofilms/storage/framework/cache/data;
+            mkdir -p afobainofilms/storage/logs;
+            mkdir -p afobainofilms/bootstrap/cache;
+
+            # ── 2. Upload app files to ~/afobainofilms/ ──
             mirror --reverse --delete --verbose --ignore-time \
               --exclude-glob .git/ \
               --exclude-glob .git*/** \
+              --exclude-glob .github/ \
               --exclude-glob node_modules/ \
               --exclude-glob tests/ \
               --exclude-glob .env \
               --exclude-glob .env.* \
-              --exclude-glob storage/logs/ \
-              --exclude-glob .github/ \
+              --exclude-glob storage/ \
+              --exclude-glob public/ \
+              --exclude-glob deploy/ \
+              --exclude-glob sample_img/ \
               --exclude-glob README.md \
+              --exclude-glob phpunit.xml \
+              --exclude-glob _*.php \
+              --exclude-glob *.mp4 \
+              ./ ./afobainofilms/;
+
+            # ── 3. Upload public files to ~/public_html/ ──
+            mirror --reverse --delete --verbose --ignore-time \
               --exclude-glob .well-known/ \
-              ./ ${{ secrets.CPANEL_FTP_REMOTE_PATH }};
+              ./public/ ./public_html/;
+
             bye;
-          " || true
+          "
