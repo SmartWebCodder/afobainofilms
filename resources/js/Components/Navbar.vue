@@ -50,7 +50,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
                     class="font-headline uppercase tracking-[0.15em] text-sm transition-colors duration-300"
                     :class="$page.url === link.href
                         ? 'text-primary border-b border-primary pb-1'
-                        : 'text-on-surface hover:text-primary'"
+                        : scrolled ? 'text-on-surface hover:text-primary' : 'text-white/90 hover:text-primary'"
                 >
                     {{ link.name }}
                 </Link>
@@ -58,7 +58,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
             <Link
                 href="/contact"
-                class="hidden md:inline-block font-headline uppercase tracking-[0.15em] text-sm px-6 py-2 border border-primary/40 text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                class="hidden md:inline-block font-headline uppercase tracking-[0.15em] text-sm px-6 py-2 border transition-all duration-300"
+                :class="scrolled
+                    ? 'border-primary/40 text-primary hover:bg-primary hover:text-white'
+                    : 'border-white/40 text-white hover:bg-primary hover:text-white hover:border-primary'"
             >
                 Book Now
             </Link>
@@ -70,16 +73,16 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
                 aria-label="Toggle menu"
             >
                 <span
-                    class="w-full h-0.5 bg-on-surface transition-all duration-300 origin-center"
-                    :class="mobileOpen ? 'rotate-45 translate-y-[11px]' : ''"
+                    class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? 'rotate-45 translate-y-[11px]' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
                 />
                 <span
-                    class="w-full h-0.5 bg-on-surface transition-opacity duration-300"
-                    :class="mobileOpen ? 'opacity-0' : ''"
+                    class="w-full h-0.5 transition-opacity duration-300"
+                    :class="[mobileOpen ? 'opacity-0' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
                 />
                 <span
-                    class="w-full h-0.5 bg-on-surface transition-all duration-300 origin-center"
-                    :class="mobileOpen ? '-rotate-45 -translate-y-[11px]' : ''"
+                    class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? '-rotate-45 -translate-y-[11px]' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
                 />
             </button>
         </div>
