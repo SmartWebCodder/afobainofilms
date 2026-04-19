@@ -16,7 +16,7 @@ const navLinks = [
 ];
 
 // Pages with dark hero banners where nav text should be white
-const darkHeroPages = ['/portfolio', '/about', '/contact', '/services'];
+const darkHeroPages = ['/portfolio', '/about', '/contact', '/services', '/faq'];
 const page = usePage();
 const hasDarkHero = computed(() => darkHeroPages.includes(page.url));
 const isHome = computed(() => page.url === '/');
@@ -47,35 +47,34 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
     <nav
         class="fixed top-0 w-full z-50 transition-all duration-500"
         :class="[
-            scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm translate-y-0' : (isHome ? '-translate-y-full' : 'bg-transparent translate-y-0')
+            scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm translate-y-0' : 'md:-translate-y-full bg-white/95 md:bg-transparent'
         ]"
     >
         <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-            <Link href="/" class="text-xl font-headline tracking-tight text-primary font-bold">
-                AFOBAINO FILMS
+            <!-- Mobile: styled logo (same as desktop hero, smaller) -->
+            <Link href="/" class="md:hidden inline-flex items-start gap-0">
+                <span class="font-headline text-3xl tracking-tight text-primary font-light leading-none mt-1 mr-1">AFOBAINO</span>
+                <span class="font-headline text-[7px] tracking-[0.15em] text-primary font-normal leading-none mt-0.5" style="writing-mode: vertical-lr; transform: rotate(180deg);">FILMS</span>
             </Link>
 
-            <!-- Desktop links -->
-            <div class="hidden md:flex items-center gap-1">
+            <!-- Desktop: centered links, no logo -->
+            <div class="hidden md:flex items-center justify-center w-full gap-1">
                 <template v-for="(link, i) in navLinks" :key="link.name">
                     <Link
                         :href="link.href"
                         class="font-headline uppercase tracking-[0.15em] text-sm transition-colors duration-300 px-4"
                         :class="$page.url === link.href
                             ? 'text-primary'
-                            : useDarkText ? 'text-on-surface hover:text-primary' : 'text-white/90 hover:text-primary'"
+                            : 'text-on-surface hover:text-primary'"
                     >
                         {{ link.name }}
                     </Link>
                     <span
                         v-if="i < navLinks.length - 1"
-                        class="text-sm font-headline select-none"
-                        :class="useDarkText ? 'text-on-surface/30' : 'text-white/30'"
+                        class="text-sm font-headline select-none text-on-surface/30"
                     >I</span>
                 </template>
             </div>
-
-            <div class="hidden md:block w-[120px]"></div>
 
             <!-- Mobile hamburger -->
             <button
@@ -93,18 +92,15 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
         </div>
     </nav>
 
-    <!-- Static top nav for non-home pages (before scroll) -->
+    <!-- Static top nav for non-home pages (before scroll, desktop only) -->
     <nav
         v-if="!isHome"
-        class="w-full z-40 absolute top-0 transition-opacity duration-300"
+        class="hidden md:block w-full z-40 absolute top-0 transition-opacity duration-300"
         :class="scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'"
     >
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-5">
-            <Link href="/" class="text-2xl font-headline tracking-tight text-primary font-bold">
-                AFOBAINO FILMS
-            </Link>
-
-            <div class="hidden md:flex items-center gap-1">
+        <div class="max-w-7xl mx-auto flex items-center justify-center px-6 md:px-12 py-5">
+            <!-- Desktop: centered links, no logo -->
+            <div class="flex items-center justify-center w-full gap-1">
                 <template v-for="(link, i) in navLinks" :key="link.name">
                     <Link
                         :href="link.href"
@@ -122,21 +118,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
                     >I</span>
                 </template>
             </div>
-
-            <div class="hidden md:block w-[120px]"></div>
-
-            <button
-                class="md:hidden relative w-8 h-6 flex flex-col justify-between"
-                @click="toggleMobile"
-                aria-label="Toggle menu"
-            >
-                <span class="w-full h-0.5 transition-all duration-300 origin-center"
-                    :class="[mobileOpen ? 'rotate-45 translate-y-[11px]' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
-                <span class="w-full h-0.5 transition-opacity duration-300"
-                    :class="[mobileOpen ? 'opacity-0' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
-                <span class="w-full h-0.5 transition-all duration-300 origin-center"
-                    :class="[mobileOpen ? '-rotate-45 -translate-y-[11px]' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
-            </button>
         </div>
     </nav>
 

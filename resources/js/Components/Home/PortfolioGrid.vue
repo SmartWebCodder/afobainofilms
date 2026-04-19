@@ -3,67 +3,81 @@ import { Link } from '@inertiajs/vue3';
 
 const projects = [
     {
-        title: 'Eternal Frames',
-        category: 'Weddings',
-        aspect: 'aspect-[3/4]',
-        offset: '',
+        couple: 'Adaeze & Chukwuma',
+        location: 'NIGERIA',
+        venue: 'The George, Lagos, Nigeria',
+        type: 'image',
         image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459582/afobaino-films/gallery/afobaino-01.jpg',
         alt: 'Bride and groom wedding portrait by Afobaino Films',
     },
     {
-        title: 'Golden Hour',
-        category: 'Weddings',
-        aspect: 'aspect-square',
-        offset: 'md:mt-12',
+        couple: 'Ifeoma & David',
+        location: 'FRANCE',
+        venue: 'Château de Vaux, Paris, France',
+        type: 'video',
         image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459590/afobaino-films/gallery/afobaino-03.jpg',
-        alt: 'Wedding ceremony golden hour cinematography',
+        alt: 'Wedding ceremony cinematography in France',
     },
     {
-        title: 'Timeless Bond',
-        category: 'Weddings',
-        aspect: 'aspect-[3/4]',
-        offset: '',
+        couple: 'Ngozi & Emeka',
+        location: 'ITALY',
+        venue: 'Villa Balbiano, Lake Como, Italy',
+        type: 'video',
         image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459691/afobaino-films/gallery/afobaino-05.jpg',
+        alt: 'Luxury wedding film in Italy',
+    },
+    {
+        couple: 'Amara & Tunde',
+        location: 'NIGERIA',
+        venue: 'Eko Atlantic, Victoria Island, Nigeria',
+        type: 'image',
+        image: 'https://res.cloudinary.com/dtetfimeq/image/upload/v1776459594/afobaino-films/gallery/afobaino-04.jpg',
         alt: 'Couple portrait by Afobaino Films',
     },
 ];
 </script>
 
 <template>
-    <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-dim">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-20">
-                <h3 class="font-headline text-4xl md:text-6xl text-on-surface">The Anthology</h3>
-                <div class="hidden md:block w-1/3 h-px bg-outline opacity-50 mb-4"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <!-- 2x2 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                 <div
                     v-for="project in projects"
-                    :key="project.title"
+                    :key="project.couple"
                     class="group cursor-pointer"
-                    :class="project.offset"
                 >
-                    <div :class="[project.aspect, 'overflow-hidden mb-6 bg-surface-container']">
+                    <!-- Card -->
+                    <div class="relative aspect-[4/3] overflow-hidden bg-surface-container">
                         <img
                             :src="project.image"
                             :alt="project.alt"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span class="font-sans text-[10px] uppercase tracking-[0.2em] text-primary mb-2 block">
-                                {{ project.category }}
-                            </span>
-                            <h4 class="font-headline text-2xl group-hover:italic transition-all">
-                                {{ project.title }}
-                            </h4>
+                        <!-- Dark gradient overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent"></div>
+
+                        <!-- Couple name + Location overlay (top-left) -->
+                        <div class="absolute top-5 left-5">
+                            <p class="font-serif italic text-white/90 text-sm md:text-base leading-tight">{{ project.couple }}</p>
+                            <p class="font-headline text-white text-lg md:text-xl tracking-[0.15em] font-semibold mt-0.5">{{ project.location }}</p>
                         </div>
-                        <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500">
-                            arrow_forward
-                        </span>
+
+                        <!-- Play button (for videos) -->
+                        <div
+                            v-if="project.type === 'video'"
+                            class="absolute inset-0 flex items-center justify-center"
+                        >
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Venue text below -->
+                    <p class="mt-3 text-center font-sans text-sm text-on-surface-variant tracking-wide">{{ project.venue }}</p>
                 </div>
             </div>
         </div>

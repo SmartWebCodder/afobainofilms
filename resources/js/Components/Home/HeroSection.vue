@@ -17,8 +17,8 @@ const navLinks = [
     <div>
         <!-- Hero Header: Menu + Logo + Video (Family Films style) -->
         <header class="bg-white">
-            <!-- Centered Navigation -->
-            <nav class="pt-4 pb-2">
+            <!-- Centered Navigation (desktop only) -->
+            <nav class="hidden md:block pt-4 pb-2">
                 <div class="flex items-center justify-center gap-1">
                     <template v-for="(link, i) in navLinks" :key="link.name">
                         <Link
@@ -36,15 +36,15 @@ const navLinks = [
                 </div>
             </nav>
 
-            <!-- Centered Logo -->
-            <div class="flex justify-center py-6 md:py-10">
+            <!-- Centered Logo (desktop only, mobile uses Navbar logo) -->
+            <div class="hidden md:flex justify-center py-6 md:py-10">
                 <Link href="/" class="inline-flex items-start gap-0">
-                    <span class="font-headline text-5xl md:text-7xl lg:text-8xl tracking-tight text-primary font-light leading-none">
+                    <span class="font-headline text-5xl md:text-7xl lg:text-8xl tracking-tight text-primary font-light leading-none mr-1 mt-1">
                         AFOBAINO
                     </span>
                     <span
                         class="font-headline text-sm md:text-base lg:text-lg tracking-[0.2em] text-primary font-normal leading-none mt-1"
-                        style="writing-mode: vertical-lr;"
+                        style="writing-mode: vertical-lr; transform: rotate(180deg);"
                     >
                         FILMS
                     </span>
@@ -52,7 +52,7 @@ const navLinks = [
             </div>
 
             <!-- Video/Image -->
-            <div class="max-w-6xl mx-auto px-6">
+            <div class="max-w-6xl mx-auto px-6 mt-16 md:mt-0">
                 <div class="relative w-full aspect-[16/9] overflow-hidden">
                 <!-- Poster image -->
                 <img
