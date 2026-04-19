@@ -23,6 +23,7 @@ Route::get('/portfolio', fn() => Inertia::render('Portfolio', [
 ]))->name('portfolio');
 Route::get('/about', fn() => Inertia::render('About'))->name('about');
 Route::get('/services', fn() => Inertia::render('Services'))->name('services');
+Route::get('/faq', fn() => Inertia::render('Faq'))->name('faq');
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

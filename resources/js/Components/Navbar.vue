@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import BookingModal from '@/Components/BookingModal.vue';
 
@@ -9,11 +9,20 @@ const showBooking = ref(false);
 
 const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
+    { name: 'Videography', href: '/portfolio' },
     { name: 'Contact', href: '/contact' },
+    { name: 'About', href: '/about' },
+    { name: 'FAQ', href: '/faq' },
 ];
+
+// Pages with dark hero banners where nav text should be white
+const darkHeroPages = ['/portfolio', '/about', '/contact', '/services'];
+const page = usePage();
+const hasDarkHero = computed(() => darkHeroPages.includes(page.url));
+const isHome = computed(() => page.url === '/');
+
+// Use dark text when: scrolled OR on a page without dark hero
+const useDarkText = computed(() => scrolled.value || !hasDarkHero.value);
 
 function handleScroll() {
     scrolled.value = window.scrollY > 50;
@@ -34,39 +43,39 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <template>
+    <!-- Scrolled sticky nav (appears on scroll for all pages) -->
     <nav
         class="fixed top-0 w-full z-50 transition-all duration-500"
-        :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'"
+        :class="[
+            scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm translate-y-0' : (isHome ? '-translate-y-full' : 'bg-transparent translate-y-0')
+        ]"
     >
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-5">
-            <Link href="/" class="text-2xl font-headline tracking-tight text-primary font-bold">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
+            <Link href="/" class="text-xl font-headline tracking-tight text-primary font-bold">
                 AFOBAINO FILMS
             </Link>
 
             <!-- Desktop links -->
-            <div class="hidden md:flex items-center gap-10">
-                <Link
-                    v-for="link in navLinks"
-                    :key="link.name"
-                    :href="link.href"
-                    class="font-headline uppercase tracking-[0.15em] text-sm transition-colors duration-300"
-                    :class="$page.url === link.href
-                        ? 'text-primary border-b border-primary pb-1'
-                        : scrolled ? 'text-on-surface hover:text-primary' : 'text-white/90 hover:text-primary'"
-                >
-                    {{ link.name }}
-                </Link>
+            <div class="hidden md:flex items-center gap-1">
+                <template v-for="(link, i) in navLinks" :key="link.name">
+                    <Link
+                        :href="link.href"
+                        class="font-headline uppercase tracking-[0.15em] text-sm transition-colors duration-300 px-4"
+                        :class="$page.url === link.href
+                            ? 'text-primary'
+                            : useDarkText ? 'text-on-surface hover:text-primary' : 'text-white/90 hover:text-primary'"
+                    >
+                        {{ link.name }}
+                    </Link>
+                    <span
+                        v-if="i < navLinks.length - 1"
+                        class="text-sm font-headline select-none"
+                        :class="useDarkText ? 'text-on-surface/30' : 'text-white/30'"
+                    >I</span>
+                </template>
             </div>
 
-            <button
-                @click="showBooking = true"
-                class="hidden md:inline-block font-headline uppercase tracking-[0.15em] text-sm px-6 py-2 border transition-all duration-300 cursor-pointer"
-                :class="scrolled
-                    ? 'border-primary/40 text-primary hover:bg-primary hover:text-white'
-                    : 'border-white/40 text-white hover:bg-primary hover:text-white hover:border-primary'"
-            >
-                Book Now
-            </button>
+            <div class="hidden md:block w-[120px]"></div>
 
             <!-- Mobile hamburger -->
             <button
@@ -74,18 +83,59 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
                 @click="toggleMobile"
                 aria-label="Toggle menu"
             >
-                <span
-                    class="w-full h-0.5 transition-all duration-300 origin-center"
-                    :class="[mobileOpen ? 'rotate-45 translate-y-[11px]' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
-                />
-                <span
-                    class="w-full h-0.5 transition-opacity duration-300"
-                    :class="[mobileOpen ? 'opacity-0' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
-                />
-                <span
-                    class="w-full h-0.5 transition-all duration-300 origin-center"
-                    :class="[mobileOpen ? '-rotate-45 -translate-y-[11px]' : '', scrolled || mobileOpen ? 'bg-on-surface' : 'bg-white']"
-                />
+                <span class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? 'rotate-45 translate-y-[11px]' : '', 'bg-on-surface']" />
+                <span class="w-full h-0.5 transition-opacity duration-300"
+                    :class="[mobileOpen ? 'opacity-0' : '', 'bg-on-surface']" />
+                <span class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? '-rotate-45 -translate-y-[11px]' : '', 'bg-on-surface']" />
+            </button>
+        </div>
+    </nav>
+
+    <!-- Static top nav for non-home pages (before scroll) -->
+    <nav
+        v-if="!isHome"
+        class="w-full z-40 absolute top-0 transition-opacity duration-300"
+        :class="scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'"
+    >
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-5">
+            <Link href="/" class="text-2xl font-headline tracking-tight text-primary font-bold">
+                AFOBAINO FILMS
+            </Link>
+
+            <div class="hidden md:flex items-center gap-1">
+                <template v-for="(link, i) in navLinks" :key="link.name">
+                    <Link
+                        :href="link.href"
+                        class="font-headline uppercase tracking-[0.15em] text-sm transition-colors duration-300 px-4"
+                        :class="$page.url === link.href
+                            ? 'text-primary'
+                            : hasDarkHero ? 'text-white/90 hover:text-primary' : 'text-on-surface hover:text-primary'"
+                    >
+                        {{ link.name }}
+                    </Link>
+                    <span
+                        v-if="i < navLinks.length - 1"
+                        class="text-sm font-headline select-none"
+                        :class="hasDarkHero ? 'text-white/30' : 'text-on-surface/30'"
+                    >I</span>
+                </template>
+            </div>
+
+            <div class="hidden md:block w-[120px]"></div>
+
+            <button
+                class="md:hidden relative w-8 h-6 flex flex-col justify-between"
+                @click="toggleMobile"
+                aria-label="Toggle menu"
+            >
+                <span class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? 'rotate-45 translate-y-[11px]' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
+                <span class="w-full h-0.5 transition-opacity duration-300"
+                    :class="[mobileOpen ? 'opacity-0' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
+                <span class="w-full h-0.5 transition-all duration-300 origin-center"
+                    :class="[mobileOpen ? '-rotate-45 -translate-y-[11px]' : '', hasDarkHero ? 'bg-white' : 'bg-on-surface']" />
             </button>
         </div>
     </nav>
@@ -101,8 +151,17 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
     >
         <div
             v-if="mobileOpen"
-            class="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8"
+            class="fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center gap-8"
         >
+            <button
+                class="absolute top-5 right-6 w-8 h-6 flex flex-col justify-between"
+                @click="closeMobile"
+                aria-label="Close menu"
+            >
+                <span class="w-full h-0.5 bg-on-surface rotate-45 translate-y-[11px] transition-all duration-300 origin-center" />
+                <span class="w-full h-0.5 bg-on-surface opacity-0" />
+                <span class="w-full h-0.5 bg-on-surface -rotate-45 -translate-y-[11px] transition-all duration-300 origin-center" />
+            </button>
             <Link
                 v-for="(link, i) in navLinks"
                 :key="link.name"
@@ -113,12 +172,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
             >
                 {{ link.name }}
             </Link>
-            <button
-                @click="closeMobile(); showBooking = true;"
-                class="mt-4 px-8 py-3 bg-primary text-white font-headline uppercase tracking-[0.15em] text-sm cursor-pointer"
-            >
-                Book Now
-            </button>
         </div>
     </Transition>
 

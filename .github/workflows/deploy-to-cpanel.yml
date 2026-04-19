@@ -41,6 +41,11 @@ jobs:
       - name: Deploy to cPanel via LFTP
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+          # Debug: show what's in public/ before upload
+          echo "=== Files in public/ ==="
+          ls -la public/
+
           lftp -c "
             set ftp:ssl-allow yes;
             set ftp:ssl-protect-data yes;
@@ -51,7 +56,6 @@ jobs:
             set net:reconnect-interval-base 5;
             set net:reconnect-interval-multiplier 1;
             set mirror:parallel-transfer-count 4;
-            set cmd:fail-exit no;
             open -u ${{ secrets.CPANEL_FTP_USERNAME }},${{ secrets.CPANEL_FTP_PASSWORD }} ${{ secrets.CPANEL_FTP_HOST }};
 
             # ── 1. Ensure storage & cache directories exist on server ──
@@ -62,7 +66,8 @@ jobs:
             mkdir -p afobainofilms/bootstrap/cache;
 
             # ── 2. Upload app files to ~/afobainofilms/ ──
-            mirror --reverse --delete --verbose --ignore-time \
+            mirror --reverse --delete --verbose --ignore-time --no-perms \
+              --include-glob .htaccess \
               --exclude-glob .git/ \
               --exclude-glob .git*/** \
               --exclude-glob .github/ \
@@ -81,9 +86,15 @@ jobs:
               ./ ./afobainofilms/;
 
             # ── 3. Upload public files to ~/public_html/ ──
-            mirror --reverse --delete --verbose --ignore-time \
+            mirror --reverse --verbose --ignore-time --no-perms \
+              --include-glob .htaccess \
               --exclude-glob .well-known/ \
+              --exclude-glob default.php \
               ./public/ ./public_html/;
+
+            # ── 4. Verify upload ──
+            echo '=== public_html contents ===';
+            ls -la public_html/;
 
             bye;
           "
