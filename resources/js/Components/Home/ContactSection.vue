@@ -65,7 +65,7 @@ function closeModal() {
                             <span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
                             <div>
                                 <p class="text-xs uppercase tracking-widest text-on-surface-variant font-sans mb-1">Studio</p>
-                                <address class="text-lg font-headline italic not-italic">Lagos, Nigeria</address>
+                                <address class="text-lg font-headline italic not-italic">Cottage 8, Moyvalley Hotel<br>Balyna Estate, Co. Kildare<br>Dublin, Ireland<br>Co. Kildare, W91 TF10</address>
                             </div>
                         </div>
                     </div>
