@@ -18,6 +18,6 @@ defineProps({
         <AboutTeaser />
         <TestimonialSection :testimonials="testimonials" />
         <ContactSection />
-        <InstagramStrip />
+        <!-- <InstagramStrip /> -->
     </div>
 </template>

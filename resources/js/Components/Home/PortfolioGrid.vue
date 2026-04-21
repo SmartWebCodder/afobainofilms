@@ -38,8 +38,8 @@ const projects = [
 </script>
 
 <template>
-    <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
-        <div class="max-w-6xl mx-auto">
+    <section class="py-16 md:py-24 px-6 md:px-10 bg-white">
+        <div class="max-w-[1300px] mx-auto">
             <!-- 2x2 Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                 <div

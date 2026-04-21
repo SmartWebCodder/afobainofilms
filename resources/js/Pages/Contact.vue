@@ -184,7 +184,7 @@ function closeModal() {
                         <div class="absolute inset-0 bg-black/30"></div>
                         <div class="absolute bottom-6 left-6 p-4 bg-white/80 backdrop-blur-md">
                             <p class="text-[10px] font-sans uppercase tracking-widest text-primary">Headquarters</p>
-                            <p class="text-xs tracking-tight text-on-surface">Lagos, Nigeria</p>
+                            <p class="text-xs tracking-tight text-on-surface">Dublin, Ireland</p>
                         </div>
                     </div>
                 </section>

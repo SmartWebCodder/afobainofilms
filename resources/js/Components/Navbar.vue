@@ -52,9 +52,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
     >
         <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
             <!-- Mobile: styled logo (same as desktop hero, smaller) -->
-            <Link href="/" class="md:hidden inline-flex items-start gap-0">
-                <span class="font-headline text-3xl tracking-tight text-primary font-light leading-none mt-1 mr-1">AFOBAINO</span>
-                <span class="font-headline text-[7px] tracking-[0.15em] text-primary font-normal leading-none mt-0.5" style="writing-mode: vertical-lr; transform: rotate(180deg);">FILMS</span>
+            <Link href="/" class="md:hidden inline-flex items-start gap-0" style="font-family: 'Newsreader', serif;">
+                <span class="text-3xl tracking-tight text-primary font-light leading-none mt-1 mr-1">AFOBAINO</span>
+                <span class="text-[7px] tracking-[0.15em] text-primary font-normal leading-none mt-0.5" style="writing-mode: vertical-lr; transform: rotate(180deg);">FILMS</span>
             </Link>
 
             <!-- Desktop: centered links, no logo -->

@@ -40,7 +40,7 @@ onUnmounted(stopAutoScroll);
 
             <div class="relative overflow-hidden">
                 <transition name="fade" mode="out-in">
-                    <blockquote :key="current" class="font-headline italic text-2xl md:text-4xl text-on-surface leading-relaxed mb-12">
+                    <blockquote :key="current" class="font-headline italic text-lg md:text-2xl text-on-surface leading-relaxed mb-12">
                         "{{ testimonials[current].quote }}"
                     </blockquote>
                 </transition>
@@ -48,8 +48,8 @@ onUnmounted(stopAutoScroll);
 
             <transition name="fade" mode="out-in">
                 <div :key="current" class="space-y-2">
-                    <p class="font-sans text-primary uppercase tracking-[0.3em] text-sm font-bold">{{ testimonials[current].client_name }}</p>
-                    <p v-if="testimonials[current].location" class="font-serif text-on-surface-variant italic">{{ testimonials[current].location }}</p>
+                    <p class="font-sans text-primary uppercase tracking-[0.3em] text-xs font-bold">{{ testimonials[current].client_name }}</p>
+                    <p v-if="testimonials[current].location" class="font-serif text-on-surface-variant italic text-sm">{{ testimonials[current].location }}</p>
                 </div>
             </transition>
 
