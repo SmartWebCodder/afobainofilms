@@ -47,8 +47,8 @@ function closeModal() {
 
                 <form class="pt-1 space-y-8" @submit.prevent="submit" autocomplete="off">
                     <div class="space-y-2">
-                        <p class="font-sans uppercase tracking-[0.24em] text-xs text-on-surface">Wedding Inquiries 2026-27</p>
-                        <p class="font-sans text-sm tracking-[0.12em] text-on-surface-variant">Planning a wedding? Let's connect.</p>
+                        <p class="font-sans uppercase tracking-[0.24em] text-xs text-on-surface">Event Inquiries 2026-27</p>
+                        <p class="font-sans text-sm tracking-[0.12em] text-on-surface-variant">Event a wedding? Let's connect.</p>
                     </div>
 
                     <div class="space-y-7">
