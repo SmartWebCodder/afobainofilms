@@ -38,10 +38,10 @@ const projects = [
 </script>
 
 <template>
-    <section class="py-16 md:py-24 px-[6.75rem] md:px-[21.6rem] bg-white">
+    <section class="py-10 md:py-24 px-4 md:px-[21.6rem] bg-white">
         <div class="max-w-[1720px] mx-auto">
             <!-- 2x2 Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 md:gap-y-6">
                 <div
                     v-for="project in projects"
                     :key="project.couple"
