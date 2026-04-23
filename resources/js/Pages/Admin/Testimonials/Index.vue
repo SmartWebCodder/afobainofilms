@@ -27,8 +27,8 @@ function executeDelete() {
     <Head title="Testimonials" />
     <TopBar title="Testimonials" />
 
-    <div class="px-12 py-10 space-y-8">
-        <div class="flex items-center justify-between">
+    <div class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 space-y-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p class="text-sm text-on-surface-variant">{{ testimonials.total }} testimonial{{ testimonials.total !== 1 ? 's' : '' }}</p>
             <Link href="/admin/testimonials/create" class="flex items-center space-x-2 px-5 py-2.5 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-light transition-colors">
                 <span class="material-symbols-outlined text-lg">add</span>
@@ -36,8 +36,8 @@ function executeDelete() {
             </Link>
         </div>
 
-        <div class="bg-surface border border-outline">
-            <table v-if="testimonials.data.length" class="w-full text-left">
+        <div class="bg-surface border border-outline overflow-x-auto">
+            <table v-if="testimonials.data.length" class="w-full text-left min-w-[720px]">
                 <thead class="bg-surface-container">
                     <tr class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted">
                         <th class="px-6 py-4">Client</th>

@@ -27,20 +27,20 @@ const statusColors = {
     <Head title="Dashboard" />
     <TopBar title="Welcome back, <span class='text-primary not-italic font-bold'>Admin</span>" subtitle="Overview of your digital cinema studio" />
 
-    <div class="px-12 py-10 space-y-10">
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+    <div class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 space-y-8 sm:space-y-10">
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6">
             <div
                 v-for="card in statCards"
                 :key="card.key"
-                class="bg-surface p-6 border border-outline hover:border-primary/20 transition-colors"
+                class="bg-surface p-4 sm:p-6 border border-outline hover:border-primary/20 transition-colors"
             >
-                <span class="material-symbols-outlined text-primary text-3xl mb-4 block">{{ card.icon }}</span>
+                <span class="material-symbols-outlined text-primary text-2xl sm:text-3xl mb-3 sm:mb-4 block">{{ card.icon }}</span>
                 <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted">{{ card.label }}</p>
-                <h3 class="text-3xl font-headline mt-1 text-on-surface">{{ stats[card.key] ?? 0 }}</h3>
+                <h3 class="text-2xl sm:text-3xl font-headline mt-1 text-on-surface">{{ stats[card.key] ?? 0 }}</h3>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-10">
             <div class="lg:col-span-2 space-y-6">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-headline text-on-surface italic">Recent Inquiries</h3>
@@ -49,8 +49,8 @@ const statusColors = {
                     </Link>
                 </div>
 
-                <div class="bg-surface border border-outline">
-                    <table v-if="recentMessages.length" class="w-full text-left">
+                <div class="bg-surface border border-outline overflow-x-auto">
+                    <table v-if="recentMessages.length" class="w-full text-left min-w-[640px]">
                         <thead class="bg-surface-container">
                             <tr class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted">
                                 <th class="px-6 py-4">Sender</th>
@@ -91,7 +91,7 @@ const statusColors = {
 
             <div class="space-y-6">
                 <h3 class="text-lg font-headline text-on-surface italic">Quick Actions</h3>
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                     <Link href="/admin/projects/create" class="block w-full bg-surface p-6 border border-outline text-left hover:border-primary/20 transition-colors group">
                         <span class="material-symbols-outlined text-primary text-3xl block mb-3">add_photo_alternate</span>
                         <p class="text-xs font-sans uppercase tracking-widest text-on-surface font-bold">New Project</p>

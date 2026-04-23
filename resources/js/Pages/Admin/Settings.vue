@@ -49,7 +49,7 @@ const siteFields = [
     <Head title="Settings" />
     <TopBar title="Settings" />
 
-    <div class="px-12 py-10 max-w-3xl space-y-8">
+    <div class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 max-w-3xl space-y-8">
         <div class="flex gap-1 border-b border-outline pb-px">
             <button
                 @click="activeTab = 'site'"

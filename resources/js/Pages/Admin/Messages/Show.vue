@@ -28,7 +28,7 @@ function executeDelete() {
     <Head :title="`Message from ${message.name}`" />
     <TopBar title="Message Detail" />
 
-    <div class="px-12 py-10 max-w-3xl space-y-8">
+    <div class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 max-w-3xl space-y-8">
         <Link href="/admin/messages" class="inline-flex items-center gap-1 text-xs text-on-surface-muted hover:text-primary transition-colors">
             <span class="material-symbols-outlined text-sm">arrow_back</span>
             Back to Messages

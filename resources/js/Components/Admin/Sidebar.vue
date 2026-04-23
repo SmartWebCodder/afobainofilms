@@ -2,6 +2,12 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
+defineProps({
+    open: { type: Boolean, default: false },
+});
+
+defineEmits(['close']);
+
 const page = usePage();
 const currentUrl = computed(() => page.url);
 const user = computed(() => page.props.auth?.user);
@@ -21,7 +27,16 @@ function isActive(route) {
 </script>
 
 <template>
-    <aside class="w-64 bg-surface border-r border-outline flex flex-col fixed h-full z-40">
+    <div
+        v-if="open"
+        class="lg:hidden fixed inset-0 bg-black/40 z-30"
+        @click="$emit('close')"
+    ></div>
+
+    <aside
+        class="w-64 bg-surface border-r border-outline flex flex-col fixed inset-y-0 left-0 z-40 transition-transform duration-300 lg:translate-x-0"
+        :class="open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+    >
         <div class="px-8 py-10">
             <Link href="/" class="block">
                 <h1 class="text-2xl font-headline tracking-tighter text-primary">AFOBAINO</h1>

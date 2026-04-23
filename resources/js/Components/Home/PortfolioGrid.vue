@@ -38,8 +38,8 @@ const projects = [
 </script>
 
 <template>
-    <section class="py-16 md:py-24 px-6 md:px-10 bg-white">
-        <div class="max-w-[1820px] mx-auto">
+    <section class="py-16 md:py-24 px-[6.75rem] md:px-[21.6rem] bg-white">
+        <div class="max-w-[1720px] mx-auto">
             <!-- 2x2 Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                 <div
@@ -48,7 +48,7 @@ const projects = [
                     class="group cursor-pointer"
                 >
                     <!-- Card -->
-                    <div class="relative aspect-[5/3] overflow-hidden bg-surface-container">
+                    <div class="relative aspect-[16/9] overflow-hidden bg-surface-container">
                         <img
                             :src="project.image"
                             :alt="project.alt"

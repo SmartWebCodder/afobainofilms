@@ -30,8 +30,8 @@ function submit() {
     <Head :title="isEditing ? 'Edit Testimonial' : 'New Testimonial'" />
     <TopBar :title="isEditing ? 'Edit Testimonial' : 'New Testimonial'" />
 
-    <form @submit.prevent="submit" class="px-12 py-10 max-w-3xl space-y-8">
-        <div class="bg-surface border border-outline p-8 space-y-6">
+    <form @submit.prevent="submit" class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 max-w-3xl space-y-8">
+        <div class="bg-surface border border-outline p-4 sm:p-8 space-y-6">
             <div>
                 <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Client Name</label>
                 <input
@@ -80,7 +80,7 @@ function submit() {
             </div>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <button
                 type="submit"
                 :disabled="form.processing"
@@ -88,7 +88,7 @@ function submit() {
             >
                 {{ form.processing ? 'Saving...' : (isEditing ? 'Update Testimonial' : 'Create Testimonial') }}
             </button>
-            <Link href="/admin/testimonials" class="px-8 py-3 border border-outline text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-on-surface transition-colors">
+            <Link href="/admin/testimonials" class="px-8 py-3 border border-outline text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-on-surface transition-colors text-center">
                 Cancel
             </Link>
         </div>

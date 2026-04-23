@@ -118,7 +118,7 @@ function closeModal() {
                     <button
                         type="submit"
                         :disabled="form.processing || loading"
-                        class="w-full sm:w-auto min-w-[220px] px-10 py-3 rounded-full border border-[#d0d0d0] bg-[#dfdfdf] text-on-surface text-[11px] font-sans tracking-[0.16em] uppercase hover:bg-[#d6d6d6] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                        class="w-full sm:w-auto min-w-[220px] px-10 py-3 rounded-full bg-primary text-white text-[11px] font-sans tracking-[0.16em] uppercase hover:bg-primary-dark transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                     >
                         <svg v-if="form.processing || loading" class="animate-spin h-4 w-4 text-on-surface" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

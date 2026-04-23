@@ -5,9 +5,9 @@ import { ref } from 'vue';
 const form = useForm({
     name: '',
     email: '',
-    phone: '',
     event_date: '',
-    event_type: '',
+    event_venue: '',
+    referral_source: '',
     vision: '',
 });
 
@@ -82,10 +82,10 @@ function closeModal() {
                             </div>
                             <div class="relative">
                                 <input
-                                    id="phone"
-                                    v-model="form.phone"
-                                    type="tel"
-                                    placeholder="Phone Number"
+                                    id="event_venue"
+                                    v-model="form.event_venue"
+                                    type="text"
+                                    placeholder="Event Venue"
                                     autocomplete="off"
                                     class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
                                 />
@@ -103,18 +103,15 @@ function closeModal() {
                         </div>
 
                         <div class="relative">
-                            <label for="type" class="block font-sans text-xs uppercase tracking-widest text-primary mb-2">Service Category</label>
-                            <select
-                                id="type"
-                                v-model="form.event_type"
+                            <label for="referral_source" class="block font-sans text-xs uppercase tracking-widest text-primary mb-2">How did you find us?</label>
+                            <input
+                                id="referral_source"
+                                v-model="form.referral_source"
+                                type="text"
+                                placeholder="Instagram, referral, Google, etc."
+                                autocomplete="off"
                                 class="block w-full border-0 border-b border-outline bg-transparent py-3 px-0 text-on-surface focus:border-primary focus:ring-0 focus:outline-none outline-none transition-colors"
-                            >
-                                <option value="" disabled>Select Event Type</option>
-                                <option value="cinematic">Cinematic Feature</option>
-                                <option value="editorial">Editorial Stills</option>
-                                <option value="documentary">Documentary</option>
-                                <option value="commercial">Commercial</option>
-                            </select>
+                            />
                         </div>
 
                         <div class="relative">
@@ -170,7 +167,7 @@ function closeModal() {
                             <span class="material-symbols-outlined text-on-surface-muted mt-1">location_on</span>
                             <div>
                                 <p class="text-xs uppercase tracking-widest text-on-surface-variant font-sans mb-1">Studio</p>
-                                <address class="text-lg font-headline italic leading-snug">Cottage 8, Moyvalley Hotel<br>Balyna Estate, Co. Kildare<br>Dublin, Ireland<br>Co. Kildare, W91 TF10</address>
+                                <address class="text-lg font-headline italic leading-snug">Dublin, Ireland</address>
                             </div>
                         </div>
                     </div>

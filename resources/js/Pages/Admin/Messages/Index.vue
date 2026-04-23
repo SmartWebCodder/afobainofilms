@@ -57,7 +57,7 @@ function executeDelete() {
     <Head title="Messages" />
     <TopBar title="Messages" />
 
-    <div class="px-12 py-10 space-y-8">
+    <div class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 space-y-8">
         <div class="flex items-center gap-4">
             <div class="relative flex-1 max-w-xs">
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-muted text-lg">search</span>

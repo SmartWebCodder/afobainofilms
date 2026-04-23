@@ -127,8 +127,8 @@ function submit() {
     <Head :title="isEditing ? 'Edit Project' : 'New Project'" />
     <TopBar :title="isEditing ? 'Edit Project' : 'New Project'" />
 
-    <form @submit.prevent="submit" class="px-12 py-10 max-w-3xl space-y-8">
-        <div class="bg-surface border border-outline p-8 space-y-6">
+    <form @submit.prevent="submit" class="px-4 sm:px-6 lg:px-12 py-6 sm:py-10 max-w-3xl space-y-8">
+        <div class="bg-surface border border-outline p-4 sm:p-8 space-y-6">
 
             <!-- Title -->
             <div>
@@ -156,7 +156,7 @@ function submit() {
             <!-- Media Type Selector -->
             <div>
                 <label class="block text-[10px] font-sans uppercase tracking-widest text-on-surface-variant mb-2">Media Type</label>
-                <div class="flex gap-2">
+                <div class="flex flex-wrap gap-2">
                     <button v-for="opt in [{ value: 'image', label: 'Image Upload', icon: 'image' }, { value: 'video', label: 'Video Upload', icon: 'videocam' }, { value: 'youtube', label: 'YouTube', icon: 'smart_display' }]" :key="opt.value" type="button" class="flex items-center gap-2 px-4 py-2.5 text-xs uppercase tracking-widest border transition-colors cursor-pointer" :class="mediaType === opt.value ? 'border-primary bg-primary/10 text-primary' : 'border-outline text-on-surface-variant hover:border-primary/50'" @click="mediaType = opt.value">
                         <span class="material-symbols-outlined text-base">{{ opt.icon }}</span>
                         {{ opt.label }}
@@ -295,11 +295,11 @@ function submit() {
         </div>
 
         <!-- Submit / Cancel -->
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <button type="submit" :disabled="form.processing || imageUploading || videoUploading" class="px-8 py-3 bg-primary text-black text-xs font-bold uppercase tracking-widest hover:bg-primary-light transition-colors disabled:opacity-50">
                 {{ form.processing ? 'Saving\u2026' : (isEditing ? 'Update Project' : 'Create Project') }}
             </button>
-            <Link href="/admin/projects" class="px-8 py-3 border border-outline text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-on-surface transition-colors">
+            <Link href="/admin/projects" class="px-8 py-3 border border-outline text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-on-surface transition-colors text-center">
                 Cancel
             </Link>
         </div>
