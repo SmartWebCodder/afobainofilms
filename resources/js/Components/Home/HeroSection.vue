@@ -69,7 +69,7 @@ const navLinks = [
             <!-- Overlay text -->
             <!-- Overlay text -->
             <div class="absolute inset-0 flex flex-col items-center justify-center mt-16 md:mt-0 px-6">
-                <h1 class="font-headline text-3xl md:text-5xl lg:text-6xl text-white font-light text-center leading-[1.3]">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl text-white font-light text-center leading-[1.3]" style="font-family: 'Newsreader', serif;">
                     Your day. Your story.<br />
                     <span class="italic">Forever.</span>
                 </h1>

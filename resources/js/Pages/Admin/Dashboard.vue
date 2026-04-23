@@ -54,7 +54,7 @@ const statusColors = {
                         <thead class="bg-surface-container">
                             <tr class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted">
                                 <th class="px-6 py-4">Sender</th>
-                                <th class="px-6 py-4">Type</th>
+                                <th class="px-6 py-4">Venue</th>
                                 <th class="px-6 py-4">Status</th>
                                 <th class="px-6 py-4 text-right">Action</th>
                             </tr>
@@ -72,7 +72,7 @@ const statusColors = {
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-xs text-on-surface-variant uppercase tracking-wider">{{ msg.event_type ?? '—' }}</td>
+                                <td class="px-6 py-4 text-xs text-on-surface-variant uppercase tracking-wider">{{ msg.event_venue ?? msg.event_type ?? '—' }}</td>
                                 <td class="px-6 py-4">
                                     <span class="inline-block w-2 h-2 rounded-full mr-2" :class="statusColors[msg.status]"></span>
                                     <span class="text-[10px] font-bold uppercase text-on-surface">{{ msg.status }}</span>

@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
     'email',
     'phone',
     'event_date',
+    'event_venue',
+    'referral_source',
     'event_type',
     'vision',
     'status',

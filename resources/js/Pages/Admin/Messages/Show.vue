@@ -50,16 +50,16 @@ function executeDelete() {
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-outline">
                 <div>
-                    <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Phone</p>
-                    <p class="text-sm text-on-surface">{{ message.phone || '—' }}</p>
-                </div>
-                <div>
                     <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Event Date</p>
                     <p class="text-sm text-on-surface">{{ message.event_date ? new Date(message.event_date).toLocaleDateString() : '—' }}</p>
                 </div>
                 <div>
-                    <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Event Type</p>
-                    <p class="text-sm text-on-surface">{{ message.event_type || '—' }}</p>
+                    <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Event Venue</p>
+                    <p class="text-sm text-on-surface">{{ message.event_venue || message.event_type || '—' }}</p>
+                </div>
+                <div>
+                    <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Referral Source</p>
+                    <p class="text-sm text-on-surface">{{ message.referral_source || '—' }}</p>
                 </div>
                 <div>
                     <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface-muted mb-1">Status</p>

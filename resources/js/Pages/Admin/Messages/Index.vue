@@ -100,7 +100,7 @@ function executeDelete() {
                             </div>
                             <p class="text-xs text-on-surface-muted truncate">{{ msg.email }}</p>
                         </div>
-                        <div class="hidden md:block text-xs text-on-surface-muted uppercase tracking-wider px-4">{{ msg.event_type ?? '—' }}</div>
+                        <div class="hidden md:block text-xs text-on-surface-muted uppercase tracking-wider px-4">{{ msg.event_venue ?? msg.event_type ?? '—' }}</div>
                         <p class="text-xs text-on-surface-muted truncate max-w-xs hidden lg:block">{{ msg.vision ?? '' }}</p>
                     </div>
                     <div class="flex items-center gap-3 ml-4 flex-shrink-0">

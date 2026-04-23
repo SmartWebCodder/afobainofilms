@@ -27,6 +27,7 @@ class DashboardController extends Controller
                     'id' => $m->id,
                     'name' => $m->name,
                     'email' => $m->email,
+                    'event_venue' => $m->event_venue,
                     'event_type' => $m->event_type,
                     'status' => $m->status,
                     'created_at' => $m->created_at->diffForHumans(),
